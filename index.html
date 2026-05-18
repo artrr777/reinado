@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Reinado - Betim MG</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        reinadoDark: '#111827',  // Azul/cinza escuro profundo para o minimalismo
+                        reinadoGold: '#D97706',  // Dourado para detalhes da festividade
+                        reinadoLight: '#F9FAFB'  // Fundo limpo
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-reinadoLight text-gray-800 font-sans antialiased">
+
+    <div class="bg-gray-100 border-b border-gray-200 py-2 text-xs text-gray-600">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <button class="hover:text-reinadoGold"><i class="fa-solid fa-circle-half-stroke mr-1"></i> Alto Contraste</button>
+                <button class="hover:text-reinadoGold"><i class="fa-solid fa-text-height mr-1"></i> Acessibilidade</button>
+            </div>
+            <div class="flex items-center space-x-3 text-sm">
+                <a href="#" class="hover:text-reinadoGold"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-reinadoGold"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="hover:text-reinadoGold"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-reinadoDark text-white p-2 rounded-lg">
+                    <i class="fa-solid fa-crown text-xl text-amber-400"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight tracking-tight text-reinadoDark">REINADO</h1>
+                    <p class="text-xs text-gray-500 uppercase tracking-widest">Betim - MG</p>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8 font-medium text-sm text-gray-600">
+                <a href="#historia" class="hover:text-reinadoGold transition">A Festividade</a>
+                <a href="#ternos" class="hover:text-reinadoGold transition">Os Ternos</a>
+                <a href="#programacao" class="hover:text-reinadoGold transition">Programação 2026</a>
+                <a href="#contato" class="hover:text-reinadoGold transition">Fale Conosco</a>
+            </nav>
+
+            <a href="#programacao" class="bg-reinadoDark text-white px-4 py-2 rounded-md text-xs font-semibold hover:bg-reinadoGold transition uppercase tracking-wider">
+                Ver Cronograma
+            </a>
+        </div>
+    </header>
+
+    <section class="relative bg-reinadoDark text-white py-24 md:py-32 overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="container mx-auto px-4 relative z-10 text-center max-w-3xl">
+            <span class="bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full font-semibold uppercase tracking-widest">Patrimônio Cultural Imaterial</span>
+            <h2 class="text-4xl md:text-5xl font-extrabold mt-4 tracking-tight">Festa de Nossa Senhora do Rosário</h2>
+            <p class="mt-4 text-gray-300 text-base md:text-lg font-light leading-relaxed">
+                A maior expressão de fé, história e resistência da cultura afro-brasileira em Betim. Conheça os cantos, as cores e os tambores que cruzam gerações.
+            </p>
+            <div class="mt-8 flex justify-center space-x-4">
+                <a href="#historia" class="bg-white text-reinadoDark px-6 py-3 rounded-md font-semibold text-sm hover:bg-gray-100 transition shadow-lg">Descobrir História</a>
+                <a href="#ternos" class="border border-gray-500 text-white px-6 py-3 rounded-md font-semibold text-sm hover:bg-white/10 transition">Conhecer as Guardas</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="container mx-auto px-4 -mt-10 relative z-20">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-reinadoGold flex items-start space-x-4">
+                <div class="text-reinadoGold text-2xl mt-1"><i class="fa-solid fa-calendar-day"></i></div>
+                <div>
+                    <h3 class="font-bold text-reinadoDark text-base">Calendário Oficial</h3>
+                    <p class="text-gray-500 text-xs mt-1">Fique por dentro das datas de levantamento dos mastros, missas e procissões.</p>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-reinadoDark flex items-start space-x-4">
+                <div class="text-reinadoDark text-2xl mt-1"><i class="fa-solid fa-map-location-dot"></i></div>
+                <div>
+                    <h3 class="font-bold text-reinadoDark text-base">Rotas e Capelas</h3>
+                    <p class="text-gray-500 text-xs mt-1">Veja os mapas dos cortejos, a localização da Capela do Rosário e os pontos de encontro.</p>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-reinadoGold flex items-start space-x-4">
+                <div class="text-reinadoGold text-2xl mt-1"><i class="fa-solid fa-camera-retro"></i></div>
+                <div>
+                    <h3 class="font-bold text-reinadoDark text-base">Acervo e Memória</h3>
+                    <p class="text-gray-500 text-xs mt-1">Explore a galeria histórica, fotos antigas e depoimentos dos capitães dos ternos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="historia" class="container mx-auto px-4 py-16 max-w-5xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-xs uppercase font-bold tracking-widest text-reinadoGold mb-2">Tradição de Betim</h2>
+                <h3 class="text-2xl md:text-3xl font-bold text-reinadoDark tracking-tight">Cultura Viva que Atravessa Gerações</h3>
+                <p class="text-gray-600 text-sm mt-4 leading-relaxed">
+                    Celebrada há décadas, a Festa do Reinado de Betim reúne a comunidade em torno da devoção a Nossa Senhora do Rosário, São Benedito e Santa Efigênia. O som ritmado dos tambores e os passos marcados no chão batido expressam uma herança ancestral profunda.
+                </p>
+                <p class="text-gray-600 text-sm mt-3 leading-relaxed">
+                    Este espaço digital foi idealizado em conjunto com a comunidade para documentar e facilitar o acesso a essa rica história para turistas, pesquisadores e moradores da cidade.
+                </p>
+            </div>
+            <div class="bg-gray-200 h-64 rounded-xl flex items-center justify-center text-gray-400 shadow-inner relative overflow-hidden">
+                <i class="fa-solid fa-image text-4xl absolute z-0"></i>
+                <div class="bg-reinadoDark/40 absolute inset-0 z-10 flex items-end p-4">
+                    <p class="text-white text-xs font-medium">Igreja de Nossa Senhora do Rosário, Betim/MG</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ternos" class="bg-gray-50 py-16 border-t border-b border-gray-200">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <h2 class="text-2xl font-bold text-reinadoDark">Os Guardas e Ternos</h2>
+                <p class="text-gray-500 text-xs mt-2">Cada terno carrega suas próprias cores, instrumentos, ritmos e papéis fundamentais no cortejo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg p-5 shadow-sm border border-gray-100 hover:shadow-md transition">
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-wider block mb-1">Guarda</span>
+                    <h4 class="font-bold text-gray-900 text-base">Terno de Congo</h4>
+                    <p class="text-gray-500 text-xs mt-2">Conhecidos pelas roupas vibrantes e coreografias dinâmicas, representam a alegria do anúncio.</p>
+                </div>
+                <div class="bg-white rounded-lg p-5 shadow-sm border border-gray-100 hover:shadow-md transition">
+                    <span class="text-xs font-bold text-amber-700 uppercase tracking-wider block mb-1">Tradição</span>
+                    <h4 class="font-bold text-gray-900 text-base">Terno de Moçambique</h4>
+                    <p class="text-gray-500 text-xs mt-2">Ritmo cadenciado pelas gungas nos tornozelos, guardiões oficiais da coroa e dos altares.</p>
+                </div>
+                <div class="bg-white rounded-lg p-5 shadow-sm border border-gray-100 hover:shadow-md transition">
+                    <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider block mb-1">Ritmo</span>
+                    <h4 class="font-bold text-gray-900 text-base">Terno de Catupé</h4>
+                    <p class="text-gray-500 text-xs mt-2">Trazem instrumentos de sopro ou batidas diferenciadas, enriquecendo a harmonia sonora.</p>
+                </div>
+                <div class="bg-white rounded-lg p-5 shadow-sm border border-gray-100 hover:shadow-md transition">
+                    <span class="text-xs font-bold text-red-600 uppercase tracking-wider block mb-1">História</span>
+                    <h4 class="font-bold text-gray-900 text-base">Marujada / Marinheiros</h4>
+                    <p class="text-gray-500 text-xs mt-2">Cantam as jornadas marítimas e a vinda da imagem protetora pelas águas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contato" class="bg-reinadoDark text-gray-400 py-12 text-xs border-t-2 border-reinadoGold">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h4 class="text-white font-bold mb-3 text-sm">Portal do Reinado</h4>
+                <p class="leading-relaxed">Trabalho Extensionista voltado ao programa de difusão cultural do Curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3 text-sm">Links Úteis</h4>
+                <ul class="space-y-2">
+                    <li><a href="https://www.betim.mg.gov.br" target="_blank" class="hover:text-white transition">Prefeitura de Betim</a></li>
+                    <li><a href="#" class="hover:text-white transition">Sec. Municipal de Arte e Cultura</a></li>
+                    <li><a href="#" class="hover:text-white transition">ODS 11 - Metas da ONU</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3 text-sm">Contato / Informações</h4>
+                <p class="mb-2"><i class="fa-solid fa-location-dot mr-2 text-reinadoGold"></i> Betim, Minas Gerais, Brasil</p>
+                <p><i class="fa-solid fa-envelope mr-2 text-reinadoGold"></i> contato@reinadobetim.com.br</p>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 mt-8 pt-6 border-t border-gray-800 text-center text-gray-500">
+            &copy; 2026 Desenvolvido como Projeto de Extensão Universitária em ADS. Todos os direitos reservados à comunidade cultural de Betim.
+        </div>
+    </footer>
+
+</body>
+</html>
