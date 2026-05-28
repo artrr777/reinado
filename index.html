@@ -54,6 +54,7 @@
                 <a href="#historia" class="hover:text-gold transition">A Festividade</a>
                 <a href="#ternos" class="hover:text-gold transition">Os Ternos</a>
                 <a href="#programacao" id="nav-programacao-edicao" class="hover:text-gold transition">Programação 2026</a>
+                <a href="#participantes" class="hover:text-gold transition">Participantes</a>
                 <a href="#contato" class="hover:text-gold transition">Fale Conosco</a>
             </nav>
 
@@ -303,6 +304,69 @@
         </div>
     </section>
 
+    <!-- Participantes -->
+    <section id="participantes" class="bg-gray-50 py-16 border-b border-gray-200">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mb-10">
+                <span class="text-xs uppercase font-bold tracking-widest text-gold">Cadastro local</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-dark mt-2">Participantes</h2>
+                <p class="text-gray-600 text-sm mt-3 leading-relaxed">
+                    Registre participantes, grupos e funções vinculados a cada edição anual. Os dados ficam salvos apenas neste navegador.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <form id="form-participante" class="lg:col-span-1 bg-white rounded-2xl p-6 shadow-sm border border-gray-200 space-y-4">
+                    <div>
+                        <label for="participante-nome" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Nome do participante ou grupo</label>
+                        <input id="participante-nome" name="nome" type="text" required placeholder="Ex.: Guarda de Moçambique" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
+                    </div>
+                    <div>
+                        <label for="participante-tipo" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Tipo</label>
+                        <select id="participante-tipo" name="tipo" required class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
+                            <option value="">Selecione</option>
+                            <option value="visitante">Visitante</option>
+                            <option value="morador">Morador</option>
+                            <option value="capitão">Capitão</option>
+                            <option value="guarda/terno">Guarda/Terno</option>
+                            <option value="organizador">Organizador</option>
+                            <option value="convidado">Convidado</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="participante-contato" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Telefone ou contato opcional</label>
+                        <input id="participante-contato" name="contato" type="text" placeholder="Telefone, e-mail ou rede social" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
+                    </div>
+                    <div>
+                        <label for="participante-ano" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Ano da edição vinculada</label>
+                        <input id="participante-ano" name="ano" type="number" min="1900" max="2100" required placeholder="2026" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
+                    </div>
+                    <div>
+                        <label for="participante-observacoes" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Observações</label>
+                        <textarea id="participante-observacoes" name="observacoes" rows="3" placeholder="Informações complementares" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-dark text-white rounded-lg px-4 py-3 text-xs font-bold uppercase tracking-wider hover:bg-gold transition">
+                        Cadastrar participante
+                    </button>
+                </form>
+
+                <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="p-6 border-b border-gray-200 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                        <div>
+                            <h3 class="font-bold text-dark text-lg">Participantes cadastrados</h3>
+                            <p class="text-xs text-gray-500 mt-1">Lista salva em <strong>localStorage</strong> com a chave <strong>reinado_participantes</strong>.</p>
+                        </div>
+                    </div>
+                    <div id="lista-participantes" class="grid grid-cols-1 md:grid-cols-2 gap-4 p-6"></div>
+                    <div id="lista-participantes-vazia" class="hidden p-8 text-center text-sm text-gray-500">
+                        Ainda não há participantes cadastrados. Use o formulário para adicionar o primeiro registro.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <!-- Footer -->
     <footer id="contato" class="bg-dark text-gray-400 py-12 text-xs border-t-2 border-gold">
         <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -454,6 +518,130 @@
 
             renderizarEdicoes();
         }());
+
+        (function () {
+            const STORAGE_KEY = 'reinado_participantes';
+            const formParticipante = document.getElementById('form-participante');
+            const listaParticipantes = document.getElementById('lista-participantes');
+            const emptyState = document.getElementById('lista-participantes-vazia');
+
+            function carregarParticipantes() {
+                try {
+                    const participantes = JSON.parse(localStorage.getItem(STORAGE_KEY));
+                    return Array.isArray(participantes) ? participantes : [];
+                } catch (error) {
+                    return [];
+                }
+            }
+
+            function salvarParticipantes(participantes) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(participantes));
+            }
+
+            function escaparHtml(valor) {
+                return String(valor || '').replace(/[&<>"]|'/g, function (caractere) {
+                    return {
+                        '&': '&amp;',
+                        '<': '&lt;',
+                        '>': '&gt;',
+                        '"': '&quot;',
+                        "'": '&#039;'
+                    }[caractere];
+                });
+            }
+
+            function formatarTipo(tipo) {
+                const tipos = {
+                    visitante: 'Visitante',
+                    morador: 'Morador',
+                    'capitão': 'Capitão',
+                    'guarda/terno': 'Guarda/Terno',
+                    organizador: 'Organizador',
+                    convidado: 'Convidado'
+                };
+
+                return tipos[tipo] || tipo;
+            }
+
+            function criarCardParticipante(participante) {
+                const article = document.createElement('article');
+                article.className = 'rounded-xl border border-gray-200 bg-gray-50 p-5 shadow-sm';
+                article.innerHTML = `
+                    <div class="flex items-start justify-between gap-3">
+                        <div>
+                            <span class="inline-flex rounded-full bg-amber-100 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-gold">${escaparHtml(formatarTipo(participante.tipo))}</span>
+                            <h4 class="mt-3 text-base font-bold text-dark">${escaparHtml(participante.nome)}</h4>
+                        </div>
+                        <button type="button" data-id="${participante.id}" class="remover-participante rounded-md border border-red-200 px-3 py-2 text-xs font-bold uppercase tracking-wider text-red-600 hover:bg-red-600 hover:text-white transition">
+                            Remover
+                        </button>
+                    </div>
+                    <dl class="mt-4 space-y-2 text-sm text-gray-600">
+                        <div>
+                            <dt class="inline font-bold text-gray-700">Ano:</dt>
+                            <dd class="inline">${escaparHtml(participante.ano)}</dd>
+                        </div>
+                        <div>
+                            <dt class="inline font-bold text-gray-700">Contato:</dt>
+                            <dd class="inline">${escaparHtml(participante.contato || 'Não informado')}</dd>
+                        </div>
+                        <div>
+                            <dt class="block font-bold text-gray-700">Observações:</dt>
+                            <dd class="mt-1 text-gray-500">${escaparHtml(participante.observacoes || 'Sem observações')}</dd>
+                        </div>
+                    </dl>
+                `;
+                return article;
+            }
+
+            function renderizarParticipantes() {
+                const participantes = carregarParticipantes().sort((a, b) => Number(b.ano) - Number(a.ano));
+
+                listaParticipantes.innerHTML = '';
+                emptyState.classList.toggle('hidden', participantes.length > 0);
+
+                participantes.forEach((participante) => {
+                    listaParticipantes.appendChild(criarCardParticipante(participante));
+                });
+            }
+
+            function removerParticipante(id) {
+                const participantes = carregarParticipantes().filter((participante) => participante.id !== id);
+
+                salvarParticipantes(participantes);
+                renderizarParticipantes();
+            }
+
+            formParticipante.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const formData = new FormData(formParticipante);
+                const novoParticipante = {
+                    id: String(Date.now()),
+                    nome: formData.get('nome'),
+                    tipo: formData.get('tipo'),
+                    contato: formData.get('contato'),
+                    ano: formData.get('ano'),
+                    observacoes: formData.get('observacoes')
+                };
+
+                const participantes = carregarParticipantes();
+                participantes.push(novoParticipante);
+                salvarParticipantes(participantes);
+                formParticipante.reset();
+                renderizarParticipantes();
+            });
+
+            listaParticipantes.addEventListener('click', function (event) {
+                const botao = event.target.closest('.remover-participante');
+                if (botao) {
+                    removerParticipante(botao.dataset.id);
+                }
+            });
+
+            renderizarParticipantes();
+        }());
+
     </script>
 
 </body>
