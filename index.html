@@ -53,7 +53,7 @@
             <nav class="hidden md:flex space-x-8 font-medium text-sm text-gray-600">
                 <a href="#historia" class="hover:text-gold transition">A Festividade</a>
                 <a href="#ternos" class="hover:text-gold transition">Os Ternos</a>
-                <a href="#programacao" class="hover:text-gold transition">Programação 2026</a>
+                <a href="#programacao" id="nav-programacao-edicao" class="hover:text-gold transition">Programação 2026</a>
                 <a href="#contato" class="hover:text-gold transition">Fale Conosco</a>
             </nav>
 
@@ -228,6 +228,81 @@
         </div>
     </section>
 
+    <!-- Gestão da Edição -->
+    <section id="programacao" class="bg-white py-16 border-b border-gray-200">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mb-10">
+                <span class="text-xs uppercase font-bold tracking-widest text-gold">Área administrativa</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-dark mt-2">Gestão da Edição</h2>
+                <p class="text-gray-600 text-sm mt-3 leading-relaxed">
+                    Cadastre e selecione a edição anual do Reinado para manter a navegação do portal alinhada ao calendário vigente.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <form id="form-edicao" class="lg:col-span-1 bg-gray-50 rounded-2xl p-6 shadow-sm border border-gray-200 space-y-4">
+                    <div>
+                        <label for="edicao-ano" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Ano</label>
+                        <input id="edicao-ano" name="ano" type="number" min="1900" max="2100" required placeholder="2026" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
+                    </div>
+                    <div>
+                        <label for="edicao-tema" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Tema</label>
+                        <input id="edicao-tema" name="tema" type="text" required placeholder="Tema da edição" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
+                    </div>
+                    <div>
+                        <label for="edicao-descricao" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Descrição</label>
+                        <textarea id="edicao-descricao" name="descricao" rows="3" required placeholder="Resumo da programação anual" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100"></textarea>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="edicao-data-inicio" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Data início</label>
+                            <input id="edicao-data-inicio" name="dataInicio" type="date" required class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
+                        </div>
+                        <div>
+                            <label for="edicao-data-fim" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Data fim</label>
+                            <input id="edicao-data-fim" name="dataFim" type="date" required class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="edicao-observacoes" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Observações</label>
+                        <textarea id="edicao-observacoes" name="observacoes" rows="2" placeholder="Informações complementares" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-dark text-white rounded-lg px-4 py-3 text-xs font-bold uppercase tracking-wider hover:bg-gold transition">
+                        Cadastrar edição
+                    </button>
+                </form>
+
+                <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="p-6 border-b border-gray-200 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                        <div>
+                            <h3 class="font-bold text-dark text-lg">Edições cadastradas</h3>
+                            <p id="edicao-selecionada" class="text-xs text-gray-500 mt-1">Nenhuma edição cadastrada.</p>
+                        </div>
+                        <span class="text-xs text-gray-500">Dados salvos em <strong>localStorage</strong></span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm">
+                            <thead class="bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
+                                <tr>
+                                    <th class="px-4 py-3">Ano</th>
+                                    <th class="px-4 py-3">Tema</th>
+                                    <th class="px-4 py-3">Período</th>
+                                    <th class="px-4 py-3">Descrição</th>
+                                    <th class="px-4 py-3">Observações</th>
+                                    <th class="px-4 py-3">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-edicoes" class="divide-y divide-gray-100"></tbody>
+                        </table>
+                    </div>
+                    <div id="lista-edicoes-vazia" class="hidden p-8 text-center text-sm text-gray-500">
+                        Ainda não há edições cadastradas. Use o formulário para criar a primeira edição anual.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer id="contato" class="bg-dark text-gray-400 py-12 text-xs border-t-2 border-gold">
         <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -249,6 +324,137 @@
             &copy; 2026 · Patrimônio Cultural Imaterial da cidade de Betim.
         </div>
     </footer>
+
+
+    <script>
+        (function () {
+            const STORAGE_KEY = 'reinado_edicoes';
+            const DEFAULT_NAV_LABEL = 'Programação 2026';
+            const navProgramacao = document.getElementById('nav-programacao-edicao');
+            const formEdicao = document.getElementById('form-edicao');
+            const listaEdicoes = document.getElementById('lista-edicoes');
+            const emptyState = document.getElementById('lista-edicoes-vazia');
+            const edicaoSelecionada = document.getElementById('edicao-selecionada');
+
+            function carregarEdicoes() {
+                try {
+                    const edicoes = JSON.parse(localStorage.getItem(STORAGE_KEY));
+                    return Array.isArray(edicoes) ? edicoes : [];
+                } catch (error) {
+                    return [];
+                }
+            }
+
+            function salvarEdicoes(edicoes) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(edicoes));
+            }
+
+            function formatarData(data) {
+                if (!data) {
+                    return '';
+                }
+
+                return new Date(data + 'T00:00:00').toLocaleDateString('pt-BR');
+            }
+
+            function obterEdicaoSelecionada(edicoes) {
+                return edicoes.find((edicao) => edicao.selecionada) || edicoes[0];
+            }
+
+            function atualizarNavegacao(edicao) {
+                navProgramacao.textContent = edicao ? `Programação ${edicao.ano}` : DEFAULT_NAV_LABEL;
+                edicaoSelecionada.textContent = edicao
+                    ? `Edição selecionada: ${edicao.ano} · ${edicao.tema}`
+                    : 'Nenhuma edição cadastrada.';
+            }
+
+            function selecionarEdicao(ano) {
+                const edicoes = carregarEdicoes().map((edicao) => ({
+                    ...edicao,
+                    selecionada: String(edicao.ano) === String(ano)
+                }));
+
+                salvarEdicoes(edicoes);
+                renderizarEdicoes();
+            }
+
+            function escaparHtml(valor) {
+                return String(valor || '').replace(/[&<>"]|'/g, function (caractere) {
+                    return {
+                        '&': '&amp;',
+                        '<': '&lt;',
+                        '>': '&gt;',
+                        '"': '&quot;',
+                        "'": '&#039;'
+                    }[caractere];
+                });
+            }
+
+            function criarLinhaEdicao(edicao) {
+                const tr = document.createElement('tr');
+                tr.className = edicao.selecionada ? 'bg-amber-50' : 'bg-white';
+                tr.innerHTML = `
+                    <td class="px-4 py-4 font-bold text-dark">${escaparHtml(edicao.ano)}</td>
+                    <td class="px-4 py-4 text-gray-700">${escaparHtml(edicao.tema)}</td>
+                    <td class="px-4 py-4 text-gray-600 whitespace-nowrap">${formatarData(edicao.dataInicio)} a ${formatarData(edicao.dataFim)}</td>
+                    <td class="px-4 py-4 text-gray-500 max-w-xs">${escaparHtml(edicao.descricao)}</td>
+                    <td class="px-4 py-4 text-gray-500 max-w-xs">${escaparHtml(edicao.observacoes)}</td>
+                    <td class="px-4 py-4">
+                        <button type="button" data-ano="${edicao.ano}" class="selecionar-edicao rounded-md border border-gold px-3 py-2 text-xs font-bold uppercase tracking-wider text-gold hover:bg-gold hover:text-white transition">
+                            ${edicao.selecionada ? 'Selecionada' : 'Selecionar'}
+                        </button>
+                    </td>
+                `;
+                return tr;
+            }
+
+            function renderizarEdicoes() {
+                const edicoes = carregarEdicoes().sort((a, b) => Number(b.ano) - Number(a.ano));
+                const selecionada = obterEdicaoSelecionada(edicoes);
+
+                listaEdicoes.innerHTML = '';
+                emptyState.classList.toggle('hidden', edicoes.length > 0);
+                atualizarNavegacao(selecionada);
+
+                edicoes.forEach((edicao) => {
+                    listaEdicoes.appendChild(criarLinhaEdicao(edicao));
+                });
+            }
+
+            formEdicao.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const formData = new FormData(formEdicao);
+                const novaEdicao = {
+                    ano: formData.get('ano'),
+                    tema: formData.get('tema'),
+                    descricao: formData.get('descricao'),
+                    dataInicio: formData.get('dataInicio'),
+                    dataFim: formData.get('dataFim'),
+                    observacoes: formData.get('observacoes'),
+                    selecionada: true
+                };
+
+                const edicoes = carregarEdicoes()
+                    .filter((edicao) => String(edicao.ano) !== String(novaEdicao.ano))
+                    .map((edicao) => ({ ...edicao, selecionada: false }));
+
+                edicoes.push(novaEdicao);
+                salvarEdicoes(edicoes);
+                formEdicao.reset();
+                renderizarEdicoes();
+            });
+
+            listaEdicoes.addEventListener('click', function (event) {
+                const botao = event.target.closest('.selecionar-edicao');
+                if (botao) {
+                    selecionarEdicao(botao.dataset.ano);
+                }
+            });
+
+            renderizarEdicoes();
+        }());
+    </script>
 
 </body>
 </html>
