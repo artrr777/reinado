@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal do Reinado - Betim MG</title>
+    <title></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
@@ -98,8 +98,8 @@
     <div class="bg-gray-100 border-b border-gray-200 py-2 text-xs text-gray-600">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <div class="flex items-center space-x-4">
-                <button id="btn-contraste" type="button" class="hover:text-gold" aria-pressed="false"><i class="fa-solid fa-circle-half-stroke mr-1"></i> Alto Contraste</button>
-                <button id="btn-fonte" type="button" class="hover:text-gold" aria-pressed="false"><i class="fa-solid fa-text-height mr-1"></i> Acessibilidade</button>
+                <button id="btn-contraste" type="button" class="hover:text-gold" aria-pressed="false"><i class="fa-solid fa-circle-half-stroke mr-1"></i> <span data-text="acessibilidade.altoContraste"></span></button>
+                <button id="btn-fonte" type="button" class="hover:text-gold" aria-pressed="false"><i class="fa-solid fa-text-height mr-1"></i> <span data-text="acessibilidade.fonte"></span></button>
             </div>
             <div class="flex items-center space-x-3">
                 <a href="https://www.instagram.com/prefeiturabetim/" class="hover:text-gold"><i class="fa-brands fa-instagram"></i></a>
@@ -117,22 +117,20 @@
                     <i class="fa-solid fa-crown text-xl text-amber-400"></i>
                 </div>
                 <div>
-                    <h1 class="font-bold text-lg leading-tight tracking-tight text-dark">REINADO</h1>
-                    <p class="text-xs text-gray-500 uppercase tracking-widest">Betim - MG</p>
+                    <h1 class="font-bold text-lg leading-tight tracking-tight text-dark" data-text="marca.titulo"></h1>
+                    <p class="text-xs text-gray-500 uppercase tracking-widest" data-text="marca.local"></p>
                 </div>
             </div>
 
             <nav class="hidden md:flex space-x-8 font-medium text-sm text-gray-600">
-                <a href="#historia" class="hover:text-gold transition">A Festividade</a>
-                <a href="#ternos" class="hover:text-gold transition">Os Ternos</a>
-                <a href="#programacao" id="nav-programacao-edicao" class="hover:text-gold transition">Programação 2026</a>
-                <a href="#participantes" class="hover:text-gold transition">Participantes</a>
-                <a href="#contato" class="hover:text-gold transition">Fale Conosco</a>
+                <a href="#historia" class="hover:text-gold transition" data-text="nav.festividade"></a>
+                <a href="#ternos" class="hover:text-gold transition" data-text="nav.ternos"></a>
+                <a href="#programacao" id="nav-programacao-edicao" class="hover:text-gold transition" data-text="nav.programacaoPadrao"></a>
+                <a href="#participantes" class="hover:text-gold transition" data-text="nav.participantes"></a>
+                <a href="#contato" class="hover:text-gold transition" data-text="nav.contato"></a>
             </nav>
 
-            <a href="#programacao" class="bg-dark text-white px-4 py-2 rounded-md text-xs font-semibold hover:bg-gold transition uppercase tracking-wider">
-                Ver Cronograma
-            </a>
+            <a href="#programacao" class="bg-dark text-white px-4 py-2 rounded-md text-xs font-semibold hover:bg-gold transition uppercase tracking-wider" data-text="nav.ctaCronograma"></a>
         </div>
     </header>
 
@@ -140,22 +138,12 @@
     <section class="relative bg-dark text-white py-24 md:py-32 overflow-hidden">
         <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
         <div class="container mx-auto px-4 relative z-10 text-center max-w-3xl">
-            <span class="bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full font-semibold uppercase tracking-widest">
-                Patrimônio Cultural Imaterial
-            </span>
-            <h2 class="text-4xl md:text-5xl font-extrabold mt-4 tracking-tight">
-                Festa de Nossa Senhora do Rosário
-            </h2>
-            <p class="mt-4 text-gray-300 text-base md:text-lg font-light leading-relaxed">
-                A maior expressão de fé, história e resistência da cultura afro-brasileira em Betim. Conheça os cantos, as cores e os tambores que cruzam gerações.
-            </p>
+            <span class="bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full font-semibold uppercase tracking-widest" data-text="hero.selo"></span>
+            <h2 class="text-4xl md:text-5xl font-extrabold mt-4 tracking-tight" data-text="hero.titulo"></h2>
+            <p class="mt-4 text-gray-300 text-base md:text-lg font-light leading-relaxed" data-text="hero.descricao"></p>
             <div class="mt-8 flex justify-center space-x-4">
-                <a href="#historia" class="bg-white text-dark px-6 py-3 rounded-md font-semibold text-sm hover:bg-gray-100 transition shadow-lg">
-                    Descobrir História
-                </a>
-                <a href="#ternos" class="border border-gray-500 text-white px-6 py-3 rounded-md font-semibold text-sm hover:bg-white/10 transition">
-                    Conhecer as Guardas
-                </a>
+                <a href="#historia" class="bg-white text-dark px-6 py-3 rounded-md font-semibold text-sm hover:bg-gray-100 transition shadow-lg" data-text="hero.ctaHistoria"></a>
+                <a href="#ternos" class="border border-gray-500 text-white px-6 py-3 rounded-md font-semibold text-sm hover:bg-white/10 transition" data-text="hero.ctaGuardas"></a>
             </div>
         </div>
     </section>
@@ -166,22 +154,22 @@
             <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-gold flex items-start space-x-4">
                 <div class="text-gold text-2xl mt-1"><i class="fa-solid fa-calendar-day"></i></div>
                 <div>
-                    <h3 class="font-bold text-dark text-base">Calendário Oficial</h3>
-                    <p class="text-gray-500 text-xs mt-1">Fique por dentro das datas de levantamento dos mastros, missas e procissões.</p>
+                    <h3 class="font-bold text-dark text-base" data-text="acessoRapido.calendario.titulo"></h3>
+                    <p class="text-gray-500 text-xs mt-1" data-text="acessoRapido.calendario.descricao"></p>
                 </div>
             </div>
             <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-dark flex items-start space-x-4">
                 <div class="text-dark text-2xl mt-1"><i class="fa-solid fa-map-location-dot"></i></div>
                 <div>
-                    <h3 class="font-bold text-dark text-base">Rotas e Capelas</h3>
-                    <p class="text-gray-500 text-xs mt-1">Veja os mapas dos cortejos, a localização da Capela do Rosário e os pontos de encontro.</p>
+                    <h3 class="font-bold text-dark text-base" data-text="acessoRapido.rotas.titulo"></h3>
+                    <p class="text-gray-500 text-xs mt-1" data-text="acessoRapido.rotas.descricao"></p>
                 </div>
             </div>
             <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-gold flex items-start space-x-4">
                 <div class="text-gold text-2xl mt-1"><i class="fa-solid fa-camera-retro"></i></div>
                 <div>
-                    <h3 class="font-bold text-dark text-base">Acervo e Memória</h3>
-                    <p class="text-gray-500 text-xs mt-1">Explore a galeria histórica, fotos antigas e depoimentos dos capitães dos ternos.</p>
+                    <h3 class="font-bold text-dark text-base" data-text="acessoRapido.acervo.titulo"></h3>
+                    <p class="text-gray-500 text-xs mt-1" data-text="acessoRapido.acervo.descricao"></p>
                 </div>
             </div>
         </div>
@@ -191,24 +179,20 @@
     <section id="historia" class="container mx-auto px-4 py-20 max-w-5xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-                <h2 class="text-xs uppercase font-bold tracking-widest text-gold mb-2">Tradição de Betim</h2>
-                <h3 class="text-2xl md:text-3xl font-bold text-dark tracking-tight">Cultura Viva que Atravessa Gerações</h3>
-                <p class="text-gray-600 text-sm mt-4 leading-relaxed">
-                    Celebrada há décadas, a Festa do Reinado de Betim reúne a comunidade em torno da devoção a Nossa Senhora do Rosário, São Benedito e Santa Efigênia. O som ritmado dos tambores e os passos marcados no chão batido expressam uma herança ancestral profunda.
-                </p>
-                <p class="text-gray-600 text-sm mt-3 leading-relaxed">
-                    Este espaço digital foi idealizado em conjunto com a comunidade para documentar e facilitar o acesso a essa rica história para turistas, pesquisadores e moradores da cidade.
-                </p>
+                <h2 class="text-xs uppercase font-bold tracking-widest text-gold mb-2" data-text="historia.selo"></h2>
+                <h3 class="text-2xl md:text-3xl font-bold text-dark tracking-tight" data-text="historia.titulo"></h3>
+                <p class="text-gray-600 text-sm mt-4 leading-relaxed" data-text="historia.paragrafos.0"></p>
+                <p class="text-gray-600 text-sm mt-3 leading-relaxed" data-text="historia.paragrafos.1"></p>
             </div>
             <div class="relative h-64 rounded-xl overflow-hidden shadow-inner">
                 <img
                     src="https://live.staticflickr.com/7145/6745528079_a2dd02d7e9_h.jpg"
-                    alt="Igreja de Nossa Senhora do Rosário"
+                    data-alt="historia.imagemAlt" alt=""
                     class="w-full h-full object-cover"
                 >
                 <div class="absolute inset-0 bg-black/30"></div>
                 <div class="absolute bottom-0 left-0 w-full p-4">
-                    <p class="text-white text-sm font-semibold">Igreja de Nossa Senhora do Rosário, Betim/MG</p>
+                    <p class="text-white text-sm font-semibold" data-text="historia.legenda"></p>
                 </div>
             </div>
         </div>
@@ -218,8 +202,8 @@
     <section id="ternos" class="bg-gray-50 py-16 border-t border-b border-gray-200">
         <div class="container mx-auto px-4">
             <div class="text-center max-w-xl mx-auto mb-12">
-                <h2 class="text-2xl font-bold text-dark">Os Guardas e Ternos</h2>
-                <p class="text-gray-500 text-xs mt-2">Cada terno carrega suas próprias cores, instrumentos, ritmos e papéis fundamentais no cortejo.</p>
+                <h2 class="text-2xl font-bold text-dark" data-text="ternos.titulo"></h2>
+                <p class="text-gray-500 text-xs mt-2" data-text="ternos.descricao"></p>
             </div>
 
             <!-- Cards com imagem -->
@@ -229,14 +213,14 @@
                 <div class="relative h-72 rounded-2xl overflow-hidden shadow-lg group bg-gray-300">
                     <img
                         src="https://www.otempobetim.com.br/content/dam/otempo/editorias/betim%20live/2024/8/betim%20live-festa-do-congado-em-betim-1723780119.jpeg"
-                        alt="Congo"
+                        data-alt="ternos.cardsImagem.congo.imagemAlt" alt=""
                         class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                         onerror="this.style.display='none'"
                     >
                     <div class="absolute inset-0 bg-black/40"></div>
                     <div class="absolute bottom-0 left-0 p-4">
-                        <h3 class="text-white text-lg font-bold">Congo</h3>
-                        <p class="text-white text-sm opacity-90">Danças e cantos tradicionais.</p>
+                        <h3 class="text-white text-lg font-bold" data-text="ternos.cardsImagem.congo.titulo"></h3>
+                        <p class="text-white text-sm opacity-90" data-text="ternos.cardsImagem.congo.descricao"></p>
                     </div>
                 </div>
 
@@ -246,8 +230,8 @@
                     <div class="absolute inset-0 bg-gradient-to-br from-amber-900 to-amber-700"></div>
                     <div class="absolute inset-0 bg-black/40"></div>
                     <div class="absolute bottom-0 left-0 p-4">
-                        <h3 class="text-white text-lg font-bold">Moçambique</h3>
-                        <p class="text-white text-sm opacity-90">Ritmos ancestrais e tradição.</p>
+                        <h3 class="text-white text-lg font-bold" data-text="ternos.cardsImagem.mocambique.titulo"></h3>
+                        <p class="text-white text-sm opacity-90" data-text="ternos.cardsImagem.mocambique.descricao"></p>
                     </div>
                 </div>
 
@@ -257,8 +241,8 @@
                     <div class="absolute inset-0 bg-gradient-to-br from-emerald-900 to-emerald-700"></div>
                     <div class="absolute inset-0 bg-black/40"></div>
                     <div class="absolute bottom-0 left-0 p-4">
-                        <h3 class="text-white text-lg font-bold">Catupé</h3>
-                        <p class="text-white text-sm opacity-90">Cultura e musicalidade vibrante.</p>
+                        <h3 class="text-white text-lg font-bold" data-text="ternos.cardsImagem.catupe.titulo"></h3>
+                        <p class="text-white text-sm opacity-90" data-text="ternos.cardsImagem.catupe.descricao"></p>
                     </div>
                 </div>
 
@@ -268,8 +252,8 @@
                     <div class="absolute inset-0 bg-gradient-to-br from-blue-900 to-blue-700"></div>
                     <div class="absolute inset-0 bg-black/40"></div>
                     <div class="absolute bottom-0 left-0 p-4">
-                        <h3 class="text-white text-lg font-bold">Marujada</h3>
-                        <p class="text-white text-sm opacity-90">Fé, procissões e tradição.</p>
+                        <h3 class="text-white text-lg font-bold" data-text="ternos.cardsImagem.marujada.titulo"></h3>
+                        <p class="text-white text-sm opacity-90" data-text="ternos.cardsImagem.marujada.descricao"></p>
                     </div>
                 </div>
 
@@ -278,24 +262,24 @@
             <!-- Cards de Texto -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="bg-white rounded-lg p-5 shadow-sm border border-gray-100 hover:shadow-md transition">
-                    <span class="text-xs font-bold text-blue-600 uppercase tracking-wider block mb-1">Guarda</span>
-                    <h4 class="font-bold text-gray-900 text-base">Terno de Congo</h4>
-                    <p class="text-gray-500 text-xs mt-2">Conhecidos pelas roupas vibrantes e coreografias dinâmicas, representam a alegria do anúncio.</p>
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-wider block mb-1" data-text="ternos.cardsTexto.congo.categoria"></span>
+                    <h4 class="font-bold text-gray-900 text-base" data-text="ternos.cardsTexto.congo.titulo"></h4>
+                    <p class="text-gray-500 text-xs mt-2" data-text="ternos.cardsTexto.congo.descricao"></p>
                 </div>
                 <div class="bg-white rounded-lg p-5 shadow-sm border border-gray-100 hover:shadow-md transition">
-                    <span class="text-xs font-bold text-amber-700 uppercase tracking-wider block mb-1">Tradição</span>
-                    <h4 class="font-bold text-gray-900 text-base">Terno de Moçambique</h4>
-                    <p class="text-gray-500 text-xs mt-2">Ritmo cadenciado pelas gungas nos tornozelos, guardiões oficiais da coroa e dos altares.</p>
+                    <span class="text-xs font-bold text-amber-700 uppercase tracking-wider block mb-1" data-text="ternos.cardsTexto.mocambique.categoria"></span>
+                    <h4 class="font-bold text-gray-900 text-base" data-text="ternos.cardsTexto.mocambique.titulo"></h4>
+                    <p class="text-gray-500 text-xs mt-2" data-text="ternos.cardsTexto.mocambique.descricao"></p>
                 </div>
                 <div class="bg-white rounded-lg p-5 shadow-sm border border-gray-100 hover:shadow-md transition">
-                    <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider block mb-1">Ritmo</span>
-                    <h4 class="font-bold text-gray-900 text-base">Terno de Catupé</h4>
-                    <p class="text-gray-500 text-xs mt-2">Trazem instrumentos de sopro ou batidas diferenciadas, enriquecendo a harmonia sonora.</p>
+                    <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider block mb-1" data-text="ternos.cardsTexto.catupe.categoria"></span>
+                    <h4 class="font-bold text-gray-900 text-base" data-text="ternos.cardsTexto.catupe.titulo"></h4>
+                    <p class="text-gray-500 text-xs mt-2" data-text="ternos.cardsTexto.catupe.descricao"></p>
                 </div>
                 <div class="bg-white rounded-lg p-5 shadow-sm border border-gray-100 hover:shadow-md transition">
-                    <span class="text-xs font-bold text-red-600 uppercase tracking-wider block mb-1">História</span>
-                    <h4 class="font-bold text-gray-900 text-base">Marujada / Marinheiros</h4>
-                    <p class="text-gray-500 text-xs mt-2">Cantam as jornadas marítimas e a vinda da imagem protetora pelas águas.</p>
+                    <span class="text-xs font-bold text-red-600 uppercase tracking-wider block mb-1" data-text="ternos.cardsTexto.marujada.categoria"></span>
+                    <h4 class="font-bold text-gray-900 text-base" data-text="ternos.cardsTexto.marujada.titulo"></h4>
+                    <p class="text-gray-500 text-xs mt-2" data-text="ternos.cardsTexto.marujada.descricao"></p>
                 </div>
             </div>
         </div>
@@ -305,72 +289,66 @@
     <section id="programacao" class="bg-white py-16 border-b border-gray-200">
         <div class="container mx-auto px-4">
             <div class="max-w-3xl mb-10">
-                <span class="text-xs uppercase font-bold tracking-widest text-gold">Área administrativa</span>
-                <h2 class="text-2xl md:text-3xl font-bold text-dark mt-2">Gestão da Edição</h2>
-                <p class="text-gray-600 text-sm mt-3 leading-relaxed">
-                    Cadastre e selecione a edição anual do Reinado para manter a navegação do portal alinhada ao calendário vigente.
-                </p>
+                <span class="text-xs uppercase font-bold tracking-widest text-gold" data-text="programacao.selo"></span>
+                <h2 class="text-2xl md:text-3xl font-bold text-dark mt-2" data-text="programacao.titulo"></h2>
+                <p class="text-gray-600 text-sm mt-3 leading-relaxed" data-text="programacao.descricao"></p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <form id="form-edicao" class="lg:col-span-1 bg-gray-50 rounded-2xl p-6 shadow-sm border border-gray-200 space-y-4">
                     <div>
-                        <label for="edicao-ano" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Ano</label>
-                        <input id="edicao-ano" name="ano" type="number" min="1900" max="2100" required placeholder="2026" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
+                        <label for="edicao-ano" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1" data-text="programacao.form.ano"></label>
+                        <input id="edicao-ano" name="ano" type="number" min="1900" max="2100" required data-placeholder="programacao.form.anoPlaceholder" placeholder="" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
                     </div>
                     <div>
-                        <label for="edicao-tema" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Tema</label>
-                        <input id="edicao-tema" name="tema" type="text" required placeholder="Tema da edição" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
+                        <label for="edicao-tema" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1" data-text="programacao.form.tema"></label>
+                        <input id="edicao-tema" name="tema" type="text" required data-placeholder="programacao.form.temaPlaceholder" placeholder="" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
                     </div>
                     <div>
-                        <label for="edicao-descricao" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Descrição</label>
-                        <textarea id="edicao-descricao" name="descricao" rows="3" required placeholder="Resumo da programação anual" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100"></textarea>
+                        <label for="edicao-descricao" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1" data-text="programacao.form.descricao"></label>
+                        <textarea id="edicao-descricao" name="descricao" rows="3" required data-placeholder="programacao.form.descricaoPlaceholder" placeholder="" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100"></textarea>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label for="edicao-data-inicio" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Data início</label>
+                            <label for="edicao-data-inicio" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1" data-text="programacao.form.dataInicio"></label>
                             <input id="edicao-data-inicio" name="dataInicio" type="date" required class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
                         </div>
                         <div>
-                            <label for="edicao-data-fim" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Data fim</label>
+                            <label for="edicao-data-fim" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1" data-text="programacao.form.dataFim"></label>
                             <input id="edicao-data-fim" name="dataFim" type="date" required class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
                         </div>
                     </div>
                     <div>
-                        <label for="edicao-observacoes" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Observações</label>
-                        <textarea id="edicao-observacoes" name="observacoes" rows="2" placeholder="Informações complementares" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100"></textarea>
+                        <label for="edicao-observacoes" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1" data-text="programacao.form.observacoes"></label>
+                        <textarea id="edicao-observacoes" name="observacoes" rows="2" data-placeholder="formularios.informacoesComplementares" placeholder="" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100"></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-dark text-white rounded-lg px-4 py-3 text-xs font-bold uppercase tracking-wider hover:bg-gold transition">
-                        Cadastrar edição
-                    </button>
+                    <button type="submit" class="w-full bg-dark text-white rounded-lg px-4 py-3 text-xs font-bold uppercase tracking-wider hover:bg-gold transition" data-text="programacao.form.botao"></button>
                 </form>
 
                 <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
                     <div class="p-6 border-b border-gray-200 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                         <div>
-                            <h3 class="font-bold text-dark text-lg">Edições cadastradas</h3>
-                            <p id="edicao-selecionada" class="text-xs text-gray-500 mt-1">Nenhuma edição cadastrada.</p>
+                            <h3 class="font-bold text-dark text-lg" data-text="programacao.lista.titulo"></h3>
+                            <p id="edicao-selecionada" class="text-xs text-gray-500 mt-1" data-text="programacao.lista.emptyResumo"></p>
                         </div>
-                        <span class="text-xs text-gray-500">Dados salvos em <strong>localStorage</strong></span>
+                        <span class="text-xs text-gray-500" data-html="programacao.lista.dadosSalvos"></span>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left text-sm">
                             <thead class="bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
                                 <tr>
-                                    <th class="px-4 py-3">Ano</th>
-                                    <th class="px-4 py-3">Tema</th>
-                                    <th class="px-4 py-3">Período</th>
-                                    <th class="px-4 py-3">Descrição</th>
-                                    <th class="px-4 py-3">Observações</th>
-                                    <th class="px-4 py-3">Ação</th>
+                                    <th class="px-4 py-3" data-text="programacao.tabela.ano"></th>
+                                    <th class="px-4 py-3" data-text="programacao.tabela.tema"></th>
+                                    <th class="px-4 py-3" data-text="programacao.tabela.periodo"></th>
+                                    <th class="px-4 py-3" data-text="programacao.tabela.descricao"></th>
+                                    <th class="px-4 py-3" data-text="programacao.tabela.observacoes"></th>
+                                    <th class="px-4 py-3" data-text="programacao.tabela.acao"></th>
                                 </tr>
                             </thead>
                             <tbody id="lista-edicoes" class="divide-y divide-gray-100"></tbody>
                         </table>
                     </div>
-                    <div id="lista-edicoes-vazia" class="hidden p-8 text-center text-sm text-gray-500">
-                        Ainda não há edições cadastradas. Use o formulário para criar a primeira edição anual.
-                    </div>
+                    <div id="lista-edicoes-vazia" class="hidden p-8 text-center text-sm text-gray-500" data-text="programacao.lista.emptyState"></div>
                 </div>
             </div>
         </div>
@@ -380,59 +358,53 @@
     <section id="participantes" class="bg-gray-50 py-16 border-b border-gray-200">
         <div class="container mx-auto px-4">
             <div class="max-w-3xl mb-10">
-                <span class="text-xs uppercase font-bold tracking-widest text-gold">Cadastro local</span>
-                <h2 class="text-2xl md:text-3xl font-bold text-dark mt-2">Participantes</h2>
-                <p class="text-gray-600 text-sm mt-3 leading-relaxed">
-                    Registre participantes, grupos e funções vinculados a cada edição anual. Os dados ficam salvos apenas neste navegador.
-                </p>
+                <span class="text-xs uppercase font-bold tracking-widest text-gold" data-text="participantes.selo"></span>
+                <h2 class="text-2xl md:text-3xl font-bold text-dark mt-2" data-text="participantes.titulo"></h2>
+                <p class="text-gray-600 text-sm mt-3 leading-relaxed" data-text="participantes.descricao"></p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <form id="form-participante" class="lg:col-span-1 bg-white rounded-2xl p-6 shadow-sm border border-gray-200 space-y-4">
                     <div>
-                        <label for="participante-nome" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Nome do participante ou grupo</label>
-                        <input id="participante-nome" name="nome" type="text" required placeholder="Ex.: Guarda de Moçambique" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
+                        <label for="participante-nome" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1" data-text="participantes.form.nome"></label>
+                        <input id="participante-nome" name="nome" type="text" required data-placeholder="participantes.form.nomePlaceholder" placeholder="" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
                     </div>
                     <div>
-                        <label for="participante-tipo" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Tipo</label>
+                        <label for="participante-tipo" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1" data-text="participantes.form.tipo"></label>
                         <select id="participante-tipo" name="tipo" required class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
-                            <option value="">Selecione</option>
-                            <option value="visitante">Visitante</option>
-                            <option value="morador">Morador</option>
-                            <option value="capitão">Capitão</option>
-                            <option value="guarda/terno">Guarda/Terno</option>
-                            <option value="organizador">Organizador</option>
-                            <option value="convidado">Convidado</option>
+                            <option value="" data-text="participantes.form.tipoPlaceholder"></option>
+                            <option value="visitante" data-text="participantes.tipos.visitante"></option>
+                            <option value="morador" data-text="participantes.tipos.morador"></option>
+                            <option value="capitão" data-text="participantes.tipos.capitao"></option>
+                            <option value="guarda/terno" data-text="participantes.tipos.guardaTerno"></option>
+                            <option value="organizador" data-text="participantes.tipos.organizador"></option>
+                            <option value="convidado" data-text="participantes.tipos.convidado"></option>
                         </select>
                     </div>
                     <div>
-                        <label for="participante-contato" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Telefone ou contato opcional</label>
-                        <input id="participante-contato" name="contato" type="text" placeholder="Telefone, e-mail ou rede social" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
+                        <label for="participante-contato" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1" data-text="participantes.form.contato"></label>
+                        <input id="participante-contato" name="contato" type="text" data-placeholder="participantes.form.contatoPlaceholder" placeholder="" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
                     </div>
                     <div>
-                        <label for="participante-ano" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Ano da edição vinculada</label>
-                        <input id="participante-ano" name="ano" type="number" min="1900" max="2100" required placeholder="2026" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
+                        <label for="participante-ano" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1" data-text="participantes.form.ano"></label>
+                        <input id="participante-ano" name="ano" type="number" min="1900" max="2100" required data-placeholder="participantes.form.anoPlaceholder" placeholder="" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
                     </div>
                     <div>
-                        <label for="participante-observacoes" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Observações</label>
-                        <textarea id="participante-observacoes" name="observacoes" rows="3" placeholder="Informações complementares" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100"></textarea>
+                        <label for="participante-observacoes" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1" data-text="participantes.form.observacoes"></label>
+                        <textarea id="participante-observacoes" name="observacoes" rows="3" data-placeholder="formularios.informacoesComplementares" placeholder="" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100"></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-dark text-white rounded-lg px-4 py-3 text-xs font-bold uppercase tracking-wider hover:bg-gold transition">
-                        Cadastrar participante
-                    </button>
+                    <button type="submit" class="w-full bg-dark text-white rounded-lg px-4 py-3 text-xs font-bold uppercase tracking-wider hover:bg-gold transition" data-text="participantes.form.botao"></button>
                 </form>
 
                 <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
                     <div class="p-6 border-b border-gray-200 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                         <div>
-                            <h3 class="font-bold text-dark text-lg">Participantes cadastrados</h3>
-                            <p class="text-xs text-gray-500 mt-1">Lista salva em <strong>localStorage</strong> com a chave <strong>reinado_participantes</strong>.</p>
+                            <h3 class="font-bold text-dark text-lg" data-text="participantes.lista.titulo"></h3>
+                            <p class="text-xs text-gray-500 mt-1" data-html="participantes.lista.dadosSalvos"></p>
                         </div>
                     </div>
                     <div id="lista-participantes" class="grid grid-cols-1 md:grid-cols-2 gap-4 p-6"></div>
-                    <div id="lista-participantes-vazia" class="hidden p-8 text-center text-sm text-gray-500">
-                        Ainda não há participantes cadastrados. Use o formulário para adicionar o primeiro registro.
-                    </div>
+                    <div id="lista-participantes-vazia" class="hidden p-8 text-center text-sm text-gray-500" data-text="participantes.lista.emptyState"></div>
                 </div>
             </div>
         </div>
@@ -443,26 +415,231 @@
     <footer id="contato" class="bg-dark text-gray-400 py-12 text-xs border-t-2 border-gold">
         <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-                <h4 class="text-white font-bold mb-3 text-sm">Links Úteis</h4>
+                <h4 class="text-white font-bold mb-3 text-sm" data-text="footer.linksTitulo"></h4>
                 <ul class="space-y-2">
-                    <li><a href="https://www.betim.mg.gov.br" target="_blank" class="hover:text-white transition">Prefeitura de Betim</a></li>
-                    <li><a href="https://www.betim.mg.gov.br/portal/secretarias/2/secretaria-municipal-de-cultura-secult" target="_blank" class="hover:text-white transition">Sec. Municipal de Arte e Cultura</a></li>
-                    <li><a href="https://brasil.un.org/pt-br/sdgs/11/key-activities" target="_blank" class="hover:text-white transition">ODS 11 - Metas da ONU</a></li>
+                    <li><a href="https://www.betim.mg.gov.br" target="_blank" class="hover:text-white transition" data-text="footer.links.prefeitura"></a></li>
+                    <li><a href="https://www.betim.mg.gov.br/portal/secretarias/2/secretaria-municipal-de-cultura-secult" target="_blank" class="hover:text-white transition" data-text="footer.links.cultura"></a></li>
+                    <li><a href="https://brasil.un.org/pt-br/sdgs/11/key-activities" target="_blank" class="hover:text-white transition" data-text="footer.links.ods"></a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-bold mb-3 text-sm">Informações</h4>
-                <p><i class="fa-solid fa-location-dot mr-2 text-gold"></i> Praça Nossa Sra. do Rosário, 21-25 - Angola, Betim/MG</p>
+                <h4 class="text-white font-bold mb-3 text-sm" data-text="footer.infoTitulo"></h4>
+                <p><i class="fa-solid fa-location-dot mr-2 text-gold"></i> <span data-text="footer.endereco"></span></p>
             </div>
             <div></div>
         </div>
         <div class="container mx-auto px-4 mt-8 pt-6 border-t border-gray-800 text-center text-gray-500">
-            &copy; 2026 · Patrimônio Cultural Imaterial da cidade de Betim.
+            <span data-html="footer.copyright"></span>
         </div>
     </footer>
 
 
     <script>
+        const TEXTOS = {
+            documento: {
+                titulo: 'Portal do Reinado - Betim MG'
+            },
+            acessibilidade: {
+                altoContraste: 'Alto Contraste',
+                fonte: 'Acessibilidade'
+            },
+            marca: {
+                titulo: 'REINADO',
+                local: 'Betim - MG'
+            },
+            nav: {
+                festividade: 'A Festividade',
+                ternos: 'Os Ternos',
+                programacaoPadrao: 'Programação 2026',
+                programacaoComAno: 'Programação {ano}',
+                participantes: 'Participantes',
+                contato: 'Fale Conosco',
+                ctaCronograma: 'Ver Cronograma'
+            },
+            hero: {
+                selo: 'Patrimônio Cultural Imaterial',
+                titulo: 'Festa de Nossa Senhora do Rosário',
+                descricao: 'A maior expressão de fé, história e resistência da cultura afro-brasileira em Betim. Conheça os cantos, as cores e os tambores que cruzam gerações.',
+                ctaHistoria: 'Descobrir História',
+                ctaGuardas: 'Conhecer as Guardas'
+            },
+            acessoRapido: {
+                calendario: {
+                    titulo: 'Calendário Oficial',
+                    descricao: 'Fique por dentro das datas de levantamento dos mastros, missas e procissões.'
+                },
+                rotas: {
+                    titulo: 'Rotas e Capelas',
+                    descricao: 'Veja os mapas dos cortejos, a localização da Capela do Rosário e os pontos de encontro.'
+                },
+                acervo: {
+                    titulo: 'Acervo e Memória',
+                    descricao: 'Explore a galeria histórica, fotos antigas e depoimentos dos capitães dos ternos.'
+                }
+            },
+            historia: {
+                selo: 'Tradição de Betim',
+                titulo: 'Cultura Viva que Atravessa Gerações',
+                paragrafos: [
+                    'Celebrada há décadas, a Festa do Reinado de Betim reúne a comunidade em torno da devoção a Nossa Senhora do Rosário, São Benedito e Santa Efigênia. O som ritmado dos tambores e os passos marcados no chão batido expressam uma herança ancestral profunda.',
+                    'Este espaço digital foi idealizado em conjunto com a comunidade para documentar e facilitar o acesso a essa rica história para turistas, pesquisadores e moradores da cidade.'
+                ],
+                imagemAlt: 'Igreja de Nossa Senhora do Rosário',
+                legenda: 'Igreja de Nossa Senhora do Rosário, Betim/MG'
+            },
+            ternos: {
+                titulo: 'Os Guardas e Ternos',
+                descricao: 'Cada terno carrega suas próprias cores, instrumentos, ritmos e papéis fundamentais no cortejo.',
+                cardsImagem: {
+                    congo: { titulo: 'Congo', descricao: 'Danças e cantos tradicionais.', imagemAlt: 'Congo' },
+                    mocambique: { titulo: 'Moçambique', descricao: 'Ritmos ancestrais e tradição.' },
+                    catupe: { titulo: 'Catupé', descricao: 'Cultura e musicalidade vibrante.' },
+                    marujada: { titulo: 'Marujada', descricao: 'Fé, procissões e tradição.' }
+                },
+                cardsTexto: {
+                    congo: {
+                        categoria: 'Guarda',
+                        titulo: 'Terno de Congo',
+                        descricao: 'Conhecidos pelas roupas vibrantes e coreografias dinâmicas, representam a alegria do anúncio.'
+                    },
+                    mocambique: {
+                        categoria: 'Tradição',
+                        titulo: 'Terno de Moçambique',
+                        descricao: 'Ritmo cadenciado pelas gungas nos tornozelos, guardiões oficiais da coroa e dos altares.'
+                    },
+                    catupe: {
+                        categoria: 'Ritmo',
+                        titulo: 'Terno de Catupé',
+                        descricao: 'Trazem instrumentos de sopro ou batidas diferenciadas, enriquecendo a harmonia sonora.'
+                    },
+                    marujada: {
+                        categoria: 'História',
+                        titulo: 'Marujada / Marinheiros',
+                        descricao: 'Cantam as jornadas marítimas e a vinda da imagem protetora pelas águas.'
+                    }
+                }
+            },
+            formularios: {
+                informacoesComplementares: 'Informações complementares'
+            },
+            programacao: {
+                selo: 'Área administrativa',
+                titulo: 'Gestão da Edição',
+                descricao: 'Cadastre e selecione a edição anual do Reinado para manter a navegação do portal alinhada ao calendário vigente.',
+                form: {
+                    ano: 'Ano',
+                    anoPlaceholder: '2026',
+                    tema: 'Tema',
+                    temaPlaceholder: 'Tema da edição',
+                    descricao: 'Descrição',
+                    descricaoPlaceholder: 'Resumo da programação anual',
+                    dataInicio: 'Data início',
+                    dataFim: 'Data fim',
+                    observacoes: 'Observações',
+                    botao: 'Cadastrar edição'
+                },
+                lista: {
+                    titulo: 'Edições cadastradas',
+                    emptyResumo: 'Nenhuma edição cadastrada.',
+                    edicaoSelecionada: 'Edição selecionada: {ano} · {tema}',
+                    dadosSalvos: 'Dados salvos em <strong>localStorage</strong>',
+                    emptyState: 'Ainda não há edições cadastradas. Use o formulário para criar a primeira edição anual.'
+                },
+                tabela: {
+                    ano: 'Ano',
+                    tema: 'Tema',
+                    periodo: 'Período',
+                    descricao: 'Descrição',
+                    observacoes: 'Observações',
+                    acao: 'Ação',
+                    periodoSeparador: 'a'
+                },
+                acoes: {
+                    selecionada: 'Selecionada',
+                    selecionar: 'Selecionar'
+                }
+            },
+            participantes: {
+                selo: 'Cadastro local',
+                titulo: 'Participantes',
+                descricao: 'Registre participantes, grupos e funções vinculados a cada edição anual. Os dados ficam salvos apenas neste navegador.',
+                form: {
+                    nome: 'Nome do participante ou grupo',
+                    nomePlaceholder: 'Ex.: Guarda de Moçambique',
+                    tipo: 'Tipo',
+                    tipoPlaceholder: 'Selecione',
+                    contato: 'Telefone ou contato opcional',
+                    contatoPlaceholder: 'Telefone, e-mail ou rede social',
+                    ano: 'Ano da edição vinculada',
+                    anoPlaceholder: '2026',
+                    observacoes: 'Observações',
+                    botao: 'Cadastrar participante'
+                },
+                lista: {
+                    titulo: 'Participantes cadastrados',
+                    dadosSalvos: 'Lista salva em <strong>localStorage</strong> com a chave <strong>reinado_participantes</strong>.',
+                    emptyState: 'Ainda não há participantes cadastrados. Use o formulário para adicionar o primeiro registro.',
+                    remover: 'Remover',
+                    ano: 'Ano:',
+                    contato: 'Contato:',
+                    observacoes: 'Observações:',
+                    naoInformado: 'Não informado',
+                    semObservacoes: 'Sem observações'
+                },
+                tipos: {
+                    visitante: 'Visitante',
+                    morador: 'Morador',
+                    capitao: 'Capitão',
+                    guardaTerno: 'Guarda/Terno',
+                    organizador: 'Organizador',
+                    convidado: 'Convidado'
+                }
+            },
+            footer: {
+                linksTitulo: 'Links Úteis',
+                links: {
+                    prefeitura: 'Prefeitura de Betim',
+                    cultura: 'Sec. Municipal de Arte e Cultura',
+                    ods: 'ODS 11 - Metas da ONU'
+                },
+                infoTitulo: 'Informações',
+                endereco: 'Praça Nossa Sra. do Rosário, 21-25 - Angola, Betim/MG',
+                copyright: '&copy; 2026 · Patrimônio Cultural Imaterial da cidade de Betim.'
+            }
+        };
+
+        function obterTexto(caminho) {
+            return caminho.split('.').reduce((valor, chave) => valor && valor[chave], TEXTOS) || '';
+        }
+
+        function interpolarTexto(texto, dados) {
+            return Object.entries(dados).reduce((resultado, [chave, valor]) => (
+                resultado.replace(`{${chave}}`, valor)
+            ), texto);
+        }
+
+        function aplicarTextosEstaticos() {
+            document.title = TEXTOS.documento.titulo;
+
+            document.querySelectorAll('[data-text]').forEach((elemento) => {
+                elemento.textContent = obterTexto(elemento.dataset.text);
+            });
+
+            document.querySelectorAll('[data-html]').forEach((elemento) => {
+                elemento.innerHTML = obterTexto(elemento.dataset.html);
+            });
+
+            document.querySelectorAll('[data-placeholder]').forEach((elemento) => {
+                elemento.setAttribute('placeholder', obterTexto(elemento.dataset.placeholder));
+            });
+
+            document.querySelectorAll('[data-alt]').forEach((elemento) => {
+                elemento.setAttribute('alt', obterTexto(elemento.dataset.alt));
+            });
+        }
+
+        aplicarTextosEstaticos();
+
         (function () {
             const CONTRASTE_KEY = 'reinado_alto_contraste';
             const FONTE_KEY = 'reinado_fonte_ampliada';
@@ -498,7 +675,7 @@
 
         (function () {
             const STORAGE_KEY = 'reinado_edicoes';
-            const DEFAULT_NAV_LABEL = 'Programação 2026';
+            const DEFAULT_NAV_LABEL = TEXTOS.nav.programacaoPadrao;
             const navProgramacao = document.getElementById('nav-programacao-edicao');
             const formEdicao = document.getElementById('form-edicao');
             const listaEdicoes = document.getElementById('lista-edicoes');
@@ -531,10 +708,10 @@
             }
 
             function atualizarNavegacao(edicao) {
-                navProgramacao.textContent = edicao ? `Programação ${edicao.ano}` : DEFAULT_NAV_LABEL;
+                navProgramacao.textContent = edicao ? interpolarTexto(TEXTOS.nav.programacaoComAno, { ano: edicao.ano }) : DEFAULT_NAV_LABEL;
                 edicaoSelecionada.textContent = edicao
-                    ? `Edição selecionada: ${edicao.ano} · ${edicao.tema}`
-                    : 'Nenhuma edição cadastrada.';
+                    ? interpolarTexto(TEXTOS.programacao.lista.edicaoSelecionada, { ano: edicao.ano, tema: edicao.tema })
+                    : TEXTOS.programacao.lista.emptyResumo;
             }
 
             function selecionarEdicao(ano) {
@@ -565,12 +742,12 @@
                 tr.innerHTML = `
                     <td class="px-4 py-4 font-bold text-dark">${escaparHtml(edicao.ano)}</td>
                     <td class="px-4 py-4 text-gray-700">${escaparHtml(edicao.tema)}</td>
-                    <td class="px-4 py-4 text-gray-600 whitespace-nowrap">${formatarData(edicao.dataInicio)} a ${formatarData(edicao.dataFim)}</td>
+                    <td class="px-4 py-4 text-gray-600 whitespace-nowrap">${formatarData(edicao.dataInicio)} ${TEXTOS.programacao.tabela.periodoSeparador} ${formatarData(edicao.dataFim)}</td>
                     <td class="px-4 py-4 text-gray-500 max-w-xs">${escaparHtml(edicao.descricao)}</td>
                     <td class="px-4 py-4 text-gray-500 max-w-xs">${escaparHtml(edicao.observacoes)}</td>
                     <td class="px-4 py-4">
                         <button type="button" data-ano="${edicao.ano}" class="selecionar-edicao rounded-md border border-gold px-3 py-2 text-xs font-bold uppercase tracking-wider text-gold hover:bg-gold hover:text-white transition">
-                            ${edicao.selecionada ? 'Selecionada' : 'Selecionar'}
+                            ${edicao.selecionada ? TEXTOS.programacao.acoes.selecionada : TEXTOS.programacao.acoes.selecionar}
                         </button>
                     </td>
                 `;
@@ -657,12 +834,12 @@
 
             function formatarTipo(tipo) {
                 const tipos = {
-                    visitante: 'Visitante',
-                    morador: 'Morador',
-                    'capitão': 'Capitão',
-                    'guarda/terno': 'Guarda/Terno',
-                    organizador: 'Organizador',
-                    convidado: 'Convidado'
+                    visitante: TEXTOS.participantes.tipos.visitante,
+                    morador: TEXTOS.participantes.tipos.morador,
+                    'capitão': TEXTOS.participantes.tipos.capitao,
+                    'guarda/terno': TEXTOS.participantes.tipos.guardaTerno,
+                    organizador: TEXTOS.participantes.tipos.organizador,
+                    convidado: TEXTOS.participantes.tipos.convidado
                 };
 
                 return tipos[tipo] || tipo;
@@ -678,21 +855,21 @@
                             <h4 class="mt-3 text-base font-bold text-dark">${escaparHtml(participante.nome)}</h4>
                         </div>
                         <button type="button" data-id="${participante.id}" class="remover-participante rounded-md border border-red-200 px-3 py-2 text-xs font-bold uppercase tracking-wider text-red-600 hover:bg-red-600 hover:text-white transition">
-                            Remover
+                            ${TEXTOS.participantes.lista.remover}
                         </button>
                     </div>
                     <dl class="mt-4 space-y-2 text-sm text-gray-600">
                         <div>
-                            <dt class="inline font-bold text-gray-700">Ano:</dt>
+                            <dt class="inline font-bold text-gray-700">${TEXTOS.participantes.lista.ano}</dt>
                             <dd class="inline">${escaparHtml(participante.ano)}</dd>
                         </div>
                         <div>
-                            <dt class="inline font-bold text-gray-700">Contato:</dt>
-                            <dd class="inline">${escaparHtml(participante.contato || 'Não informado')}</dd>
+                            <dt class="inline font-bold text-gray-700">${TEXTOS.participantes.lista.contato}</dt>
+                            <dd class="inline">${escaparHtml(participante.contato || TEXTOS.participantes.lista.naoInformado)}</dd>
                         </div>
                         <div>
-                            <dt class="block font-bold text-gray-700">Observações:</dt>
-                            <dd class="mt-1 text-gray-500">${escaparHtml(participante.observacoes || 'Sem observações')}</dd>
+                            <dt class="block font-bold text-gray-700">${TEXTOS.participantes.lista.observacoes}</dt>
+                            <dd class="mt-1 text-gray-500">${escaparHtml(participante.observacoes || TEXTOS.participantes.lista.semObservacoes)}</dd>
                         </div>
                     </dl>
                 `;
