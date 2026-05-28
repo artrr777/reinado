@@ -19,6 +19,78 @@
             }
         }
     </script>
+
+    <style>
+        body.fonte-ampliada {
+            font-size: 112.5%;
+        }
+
+        body.alto-contraste {
+            background-color: #000 !important;
+            color: #fff !important;
+        }
+
+        body.alto-contraste header,
+        body.alto-contraste footer,
+        body.alto-contraste section,
+        body.alto-contraste div,
+        body.alto-contraste form,
+        body.alto-contraste table,
+        body.alto-contraste thead,
+        body.alto-contraste tbody,
+        body.alto-contraste tr {
+            background-color: #000 !important;
+            color: #fff !important;
+            border-color: #fff !important;
+        }
+
+        body.alto-contraste .bg-white,
+        body.alto-contraste .bg-light,
+        body.alto-contraste .bg-gray-50,
+        body.alto-contraste .bg-gray-100,
+        body.alto-contraste .bg-dark,
+        body.alto-contraste .bg-amber-50 {
+            background-color: #000 !important;
+        }
+
+        body.alto-contraste .text-dark,
+        body.alto-contraste .text-gray-400,
+        body.alto-contraste .text-gray-500,
+        body.alto-contraste .text-gray-600,
+        body.alto-contraste .text-gray-700,
+        body.alto-contraste .text-gray-800,
+        body.alto-contraste .text-gray-900,
+        body.alto-contraste .text-white {
+            color: #fff !important;
+        }
+
+        body.alto-contraste a,
+        body.alto-contraste button {
+            color: #ffff00 !important;
+        }
+
+        body.alto-contraste a:hover,
+        body.alto-contraste button:hover {
+            color: #000 !important;
+            background-color: #ffff00 !important;
+        }
+
+        body.alto-contraste input,
+        body.alto-contraste textarea {
+            background-color: #000 !important;
+            color: #fff !important;
+            border-color: #ffff00 !important;
+        }
+
+        body.alto-contraste input::placeholder,
+        body.alto-contraste textarea::placeholder {
+            color: #ddd !important;
+        }
+
+        body.alto-contraste img {
+            filter: contrast(1.2) brightness(0.9);
+        }
+    </style>
 </head>
 <body class="bg-light text-gray-800 font-sans antialiased">
 
@@ -26,8 +98,8 @@
     <div class="bg-gray-100 border-b border-gray-200 py-2 text-xs text-gray-600">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <div class="flex items-center space-x-4">
-                <button class="hover:text-gold"><i class="fa-solid fa-circle-half-stroke mr-1"></i> Alto Contraste</button>
-                <button class="hover:text-gold"><i class="fa-solid fa-text-height mr-1"></i> Acessibilidade</button>
+                <button id="btn-contraste" type="button" class="hover:text-gold" aria-pressed="false"><i class="fa-solid fa-circle-half-stroke mr-1"></i> Alto Contraste</button>
+                <button id="btn-fonte" type="button" class="hover:text-gold" aria-pressed="false"><i class="fa-solid fa-text-height mr-1"></i> Acessibilidade</button>
             </div>
             <div class="flex items-center space-x-3">
                 <a href="https://www.instagram.com/prefeiturabetim/" class="hover:text-gold"><i class="fa-brands fa-instagram"></i></a>
@@ -391,6 +463,39 @@
 
 
     <script>
+        (function () {
+            const CONTRASTE_KEY = 'reinado_alto_contraste';
+            const FONTE_KEY = 'reinado_fonte_ampliada';
+            const body = document.body;
+            const botaoContraste = document.getElementById('btn-contraste');
+            const botaoFonte = document.getElementById('btn-fonte');
+
+            function aplicarPreferencias() {
+                const altoContrasteAtivo = localStorage.getItem(CONTRASTE_KEY) === 'true';
+                const fonteAmpliadaAtiva = localStorage.getItem(FONTE_KEY) === 'true';
+
+                body.classList.toggle('alto-contraste', altoContrasteAtivo);
+                body.classList.toggle('fonte-ampliada', fonteAmpliadaAtiva);
+                document.documentElement.style.fontSize = fonteAmpliadaAtiva ? '112.5%' : '';
+                botaoContraste.setAttribute('aria-pressed', String(altoContrasteAtivo));
+                botaoFonte.setAttribute('aria-pressed', String(fonteAmpliadaAtiva));
+            }
+
+            botaoContraste.addEventListener('click', function () {
+                const novoEstado = !body.classList.contains('alto-contraste');
+                localStorage.setItem(CONTRASTE_KEY, String(novoEstado));
+                aplicarPreferencias();
+            });
+
+            botaoFonte.addEventListener('click', function () {
+                const novoEstado = !body.classList.contains('fonte-ampliada');
+                localStorage.setItem(FONTE_KEY, String(novoEstado));
+                aplicarPreferencias();
+            });
+
+            aplicarPreferencias();
+        }());
+
         (function () {
             const STORAGE_KEY = 'reinado_edicoes';
             const DEFAULT_NAV_LABEL = 'Programação 2026';
