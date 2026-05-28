@@ -53,7 +53,7 @@
             <nav class="hidden md:flex space-x-8 font-medium text-sm text-gray-600">
                 <a href="#historia" class="hover:text-gold transition">A Festividade</a>
                 <a href="#ternos" class="hover:text-gold transition">Os Ternos</a>
-                <a href="#programacao" id="nav-programacao-edicao" class="hover:text-gold transition">Programação 2026</a>
+                <a href="#programacao" id="nav-programacao-edicao" class="hover:text-gold transition">Programação</a>
                 <a href="#contato" class="hover:text-gold transition">Fale Conosco</a>
             </nav>
 
@@ -239,6 +239,12 @@
                 </p>
             </div>
 
+            <div class="mb-8 max-w-sm">
+                <label for="ano-edicao" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Ano da programação</label>
+                <select id="ano-edicao" class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100"></select>
+                <p class="text-xs text-gray-500 mt-2">Alterne entre 2026, 2027 e os anos cadastrados para visualizar a programação correspondente.</p>
+            </div>
+
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <form id="form-edicao" class="lg:col-span-1 bg-gray-50 rounded-2xl p-6 shadow-sm border border-gray-200 space-y-4">
                     <div>
@@ -300,6 +306,21 @@
                     </div>
                 </div>
             </div>
+
+            <div class="mt-12 bg-gray-50 rounded-2xl p-6 shadow-sm border border-gray-200">
+                <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+                    <div>
+                        <span class="text-xs uppercase font-bold tracking-widest text-gold">Calendário oficial</span>
+                        <h3 id="titulo-programacao" class="text-xl md:text-2xl font-bold text-dark mt-2">Programação</h3>
+                        <p id="resumo-programacao" class="text-sm text-gray-600 mt-2">Selecione um ano para ver os eventos cadastrados.</p>
+                    </div>
+                    <span class="text-xs text-gray-500">Fonte: <strong>reinado_programacoes</strong></span>
+                </div>
+                <div id="lista-programacao" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                <div id="programacao-vazia" class="hidden rounded-xl border border-dashed border-gray-300 bg-white p-8 text-center text-sm text-gray-500">
+                    Nenhum item de programação cadastrado para este ano.
+                </div>
+            </div>
         </div>
     </section>
 
@@ -321,32 +342,115 @@
             <div></div>
         </div>
         <div class="container mx-auto px-4 mt-8 pt-6 border-t border-gray-800 text-center text-gray-500">
-            &copy; 2026 · Patrimônio Cultural Imaterial da cidade de Betim.
+            &copy; <span id="ano-rodape"></span> · Patrimônio Cultural Imaterial da cidade de Betim.
         </div>
     </footer>
 
 
     <script>
         (function () {
-            const STORAGE_KEY = 'reinado_edicoes';
-            const DEFAULT_NAV_LABEL = 'Programação 2026';
+            const EDICOES_STORAGE_KEY = 'reinado_edicoes';
+            const PROGRAMACOES_STORAGE_KEY = 'reinado_programacoes';
+            const ANO_SELECIONADO_STORAGE_KEY = 'reinado_ano_edicao';
+            const ANOS_PADRAO = ['2026', '2027'];
+            const PROGRAMACOES_PADRAO = {
+                2026: [
+                    {
+                        ano: '2026',
+                        data: '2026-08-15',
+                        horario: '18:00',
+                        titulo: 'Abertura da Festa do Reinado',
+                        local: 'Praça Nossa Senhora do Rosário',
+                        descricao: 'Celebração de abertura com acolhida das guardas e levantamento dos mastros.'
+                    },
+                    {
+                        ano: '2026',
+                        data: '2026-08-16',
+                        horario: '09:00',
+                        titulo: 'Cortejo das Guardas',
+                        local: 'Centro de Betim',
+                        descricao: 'Percurso tradicional com ternos de Congo, Moçambique, Catupé e Marujada.'
+                    }
+                ],
+                2027: []
+            };
+
             const navProgramacao = document.getElementById('nav-programacao-edicao');
+            const anoRodape = document.getElementById('ano-rodape');
             const formEdicao = document.getElementById('form-edicao');
             const listaEdicoes = document.getElementById('lista-edicoes');
             const emptyState = document.getElementById('lista-edicoes-vazia');
             const edicaoSelecionada = document.getElementById('edicao-selecionada');
+            const seletorAno = document.getElementById('ano-edicao');
+            const tituloProgramacao = document.getElementById('titulo-programacao');
+            const resumoProgramacao = document.getElementById('resumo-programacao');
+            const listaProgramacao = document.getElementById('lista-programacao');
+            const programacaoVazia = document.getElementById('programacao-vazia');
 
-            function carregarEdicoes() {
+            function carregarJson(chave, fallback) {
                 try {
-                    const edicoes = JSON.parse(localStorage.getItem(STORAGE_KEY));
-                    return Array.isArray(edicoes) ? edicoes : [];
+                    const dados = JSON.parse(localStorage.getItem(chave));
+                    return dados || fallback;
                 } catch (error) {
-                    return [];
+                    return fallback;
                 }
             }
 
+            function carregarEdicoes() {
+                const edicoes = carregarJson(EDICOES_STORAGE_KEY, []);
+                return Array.isArray(edicoes) ? edicoes : [];
+            }
+
             function salvarEdicoes(edicoes) {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(edicoes));
+                localStorage.setItem(EDICOES_STORAGE_KEY, JSON.stringify(edicoes));
+            }
+
+            function normalizarProgramacoes(programacoes) {
+                if (Array.isArray(programacoes)) {
+                    return programacoes.reduce((programacoesPorAno, item) => {
+                        if (item && item.ano) {
+                            const ano = String(item.ano);
+                            programacoesPorAno[ano] = programacoesPorAno[ano] || [];
+                            programacoesPorAno[ano].push({ ...item, ano });
+                        }
+
+                        return programacoesPorAno;
+                    }, {});
+                }
+
+                if (programacoes && typeof programacoes === 'object') {
+                    return Object.entries(programacoes).reduce((programacoesPorAno, [ano, itens]) => {
+                        programacoesPorAno[ano] = Array.isArray(itens)
+                            ? itens.map((item) => ({ ...item, ano: String(item.ano || ano) }))
+                            : [];
+                        return programacoesPorAno;
+                    }, {});
+                }
+
+                return {};
+            }
+
+            function carregarProgramacoes() {
+                return normalizarProgramacoes(carregarJson(PROGRAMACOES_STORAGE_KEY, PROGRAMACOES_PADRAO));
+            }
+
+            function salvarProgramacoes(programacoes) {
+                localStorage.setItem(PROGRAMACOES_STORAGE_KEY, JSON.stringify(programacoes));
+            }
+
+            function inicializarProgramacoes() {
+                const programacoesSalvas = localStorage.getItem(PROGRAMACOES_STORAGE_KEY);
+                const programacoes = carregarProgramacoes();
+
+                ANOS_PADRAO.forEach((ano) => {
+                    if (!programacoes[ano]) {
+                        programacoes[ano] = PROGRAMACOES_PADRAO[ano] || [];
+                    }
+                });
+
+                if (!programacoesSalvas || JSON.stringify(programacoes) !== programacoesSalvas) {
+                    salvarProgramacoes(programacoes);
+                }
             }
 
             function formatarData(data) {
@@ -357,15 +461,52 @@
                 return new Date(data + 'T00:00:00').toLocaleDateString('pt-BR');
             }
 
-            function obterEdicaoSelecionada(edicoes) {
-                return edicoes.find((edicao) => edicao.selecionada) || edicoes[0];
+            function obterAnosDisponiveis(edicoes, programacoes) {
+                const anos = new Set(ANOS_PADRAO);
+
+                edicoes.forEach((edicao) => {
+                    if (edicao.ano) {
+                        anos.add(String(edicao.ano));
+                    }
+                });
+
+                Object.keys(programacoes).forEach((ano) => anos.add(String(ano)));
+
+                return Array.from(anos).sort((a, b) => Number(a) - Number(b));
             }
 
-            function atualizarNavegacao(edicao) {
-                navProgramacao.textContent = edicao ? `Programação ${edicao.ano}` : DEFAULT_NAV_LABEL;
+            function obterAnoSelecionado(edicoes, programacoes) {
+                const anos = obterAnosDisponiveis(edicoes, programacoes);
+                const anoSalvo = localStorage.getItem(ANO_SELECIONADO_STORAGE_KEY);
+                const edicaoMarcada = edicoes.find((edicao) => edicao.selecionada);
+                const anoPreferencial = anoSalvo || (edicaoMarcada && edicaoMarcada.ano) || ANOS_PADRAO[0];
+
+                return anos.includes(String(anoPreferencial)) ? String(anoPreferencial) : anos[0];
+            }
+
+            function atualizarTextosDoAno(ano) {
+                navProgramacao.textContent = `Programação ${ano}`;
+                anoRodape.textContent = ano;
+                tituloProgramacao.textContent = `Programação ${ano}`;
+            }
+
+            function atualizarResumoEdicao(edicoes, ano) {
+                const edicao = edicoes.find((item) => String(item.ano) === String(ano));
                 edicaoSelecionada.textContent = edicao
                     ? `Edição selecionada: ${edicao.ano} · ${edicao.tema}`
-                    : 'Nenhuma edição cadastrada.';
+                    : `Ano selecionado: ${ano}.`;
+            }
+
+            function atualizarSeletorAno(anos, anoSelecionado) {
+                seletorAno.innerHTML = '';
+
+                anos.forEach((ano) => {
+                    const option = document.createElement('option');
+                    option.value = ano;
+                    option.textContent = ano;
+                    option.selected = String(ano) === String(anoSelecionado);
+                    seletorAno.appendChild(option);
+                });
             }
 
             function selecionarEdicao(ano) {
@@ -375,7 +516,8 @@
                 }));
 
                 salvarEdicoes(edicoes);
-                renderizarEdicoes();
+                localStorage.setItem(ANO_SELECIONADO_STORAGE_KEY, String(ano));
+                renderizarTudo();
             }
 
             function escaparHtml(valor) {
@@ -390,9 +532,10 @@
                 });
             }
 
-            function criarLinhaEdicao(edicao) {
+            function criarLinhaEdicao(edicao, anoSelecionado) {
                 const tr = document.createElement('tr');
-                tr.className = edicao.selecionada ? 'bg-amber-50' : 'bg-white';
+                const edicaoAtiva = String(edicao.ano) === String(anoSelecionado);
+                tr.className = edicaoAtiva ? 'bg-amber-50' : 'bg-white';
                 tr.innerHTML = `
                     <td class="px-4 py-4 font-bold text-dark">${escaparHtml(edicao.ano)}</td>
                     <td class="px-4 py-4 text-gray-700">${escaparHtml(edicao.tema)}</td>
@@ -400,24 +543,62 @@
                     <td class="px-4 py-4 text-gray-500 max-w-xs">${escaparHtml(edicao.descricao)}</td>
                     <td class="px-4 py-4 text-gray-500 max-w-xs">${escaparHtml(edicao.observacoes)}</td>
                     <td class="px-4 py-4">
-                        <button type="button" data-ano="${edicao.ano}" class="selecionar-edicao rounded-md border border-gold px-3 py-2 text-xs font-bold uppercase tracking-wider text-gold hover:bg-gold hover:text-white transition">
-                            ${edicao.selecionada ? 'Selecionada' : 'Selecionar'}
+                        <button type="button" data-ano="${escaparHtml(edicao.ano)}" class="selecionar-edicao rounded-md border border-gold px-3 py-2 text-xs font-bold uppercase tracking-wider text-gold hover:bg-gold hover:text-white transition">
+                            ${edicaoAtiva ? 'Selecionada' : 'Selecionar'}
                         </button>
                     </td>
                 `;
                 return tr;
             }
 
-            function renderizarEdicoes() {
+            function criarCardProgramacao(item) {
+                const article = document.createElement('article');
+                article.className = 'bg-white rounded-xl border border-gray-200 p-5 shadow-sm';
+                article.innerHTML = `
+                    <div class="flex items-start justify-between gap-4">
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wider text-gold">${formatarData(item.data)} · ${escaparHtml(item.horario)}</p>
+                            <h4 class="text-lg font-bold text-dark mt-2">${escaparHtml(item.titulo)}</h4>
+                        </div>
+                        <span class="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-gold">${escaparHtml(item.ano)}</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-3"><i class="fa-solid fa-location-dot mr-2 text-gold"></i>${escaparHtml(item.local)}</p>
+                    <p class="text-sm text-gray-500 mt-3 leading-relaxed">${escaparHtml(item.descricao)}</p>
+                `;
+                return article;
+            }
+
+            function renderizarProgramacao(programacoes, anoSelecionado) {
+                const itens = (programacoes[anoSelecionado] || [])
+                    .filter((item) => String(item.ano) === String(anoSelecionado))
+                    .sort((a, b) => `${a.data} ${a.horario}`.localeCompare(`${b.data} ${b.horario}`));
+
+                listaProgramacao.innerHTML = '';
+                resumoProgramacao.textContent = itens.length
+                    ? `${itens.length} item(ns) cadastrados para a edição de ${anoSelecionado}.`
+                    : `Ainda não há programação cadastrada para ${anoSelecionado}.`;
+                programacaoVazia.classList.toggle('hidden', itens.length > 0);
+
+                itens.forEach((item) => {
+                    listaProgramacao.appendChild(criarCardProgramacao(item));
+                });
+            }
+
+            function renderizarTudo() {
                 const edicoes = carregarEdicoes().sort((a, b) => Number(b.ano) - Number(a.ano));
-                const selecionada = obterEdicaoSelecionada(edicoes);
+                const programacoes = carregarProgramacoes();
+                const anos = obterAnosDisponiveis(edicoes, programacoes);
+                const anoSelecionado = obterAnoSelecionado(edicoes, programacoes);
 
                 listaEdicoes.innerHTML = '';
                 emptyState.classList.toggle('hidden', edicoes.length > 0);
-                atualizarNavegacao(selecionada);
+                atualizarSeletorAno(anos, anoSelecionado);
+                atualizarTextosDoAno(anoSelecionado);
+                atualizarResumoEdicao(edicoes, anoSelecionado);
+                renderizarProgramacao(programacoes, anoSelecionado);
 
                 edicoes.forEach((edicao) => {
-                    listaEdicoes.appendChild(criarLinhaEdicao(edicao));
+                    listaEdicoes.appendChild(criarLinhaEdicao(edicao, anoSelecionado));
                 });
             }
 
@@ -438,11 +619,18 @@
                 const edicoes = carregarEdicoes()
                     .filter((edicao) => String(edicao.ano) !== String(novaEdicao.ano))
                     .map((edicao) => ({ ...edicao, selecionada: false }));
+                const programacoes = carregarProgramacoes();
+
+                if (!programacoes[novaEdicao.ano]) {
+                    programacoes[novaEdicao.ano] = [];
+                    salvarProgramacoes(programacoes);
+                }
 
                 edicoes.push(novaEdicao);
                 salvarEdicoes(edicoes);
+                localStorage.setItem(ANO_SELECIONADO_STORAGE_KEY, String(novaEdicao.ano));
                 formEdicao.reset();
-                renderizarEdicoes();
+                renderizarTudo();
             });
 
             listaEdicoes.addEventListener('click', function (event) {
@@ -452,7 +640,12 @@
                 }
             });
 
-            renderizarEdicoes();
+            seletorAno.addEventListener('change', function () {
+                selecionarEdicao(seletorAno.value);
+            });
+
+            inicializarProgramacoes();
+            renderizarTudo();
         }());
     </script>
 
