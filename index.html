@@ -54,6 +54,7 @@
                 <a href="#historia" class="hover:text-gold transition">A Festividade</a>
                 <a href="#ternos" class="hover:text-gold transition">Os Ternos</a>
                 <a href="#programacao" id="nav-programacao-edicao" class="hover:text-gold transition">Programação 2026</a>
+                <a href="#locais" class="hover:text-gold transition">Locais</a>
                 <a href="#contato" class="hover:text-gold transition">Fale Conosco</a>
             </nav>
 
@@ -97,13 +98,13 @@
                     <p class="text-gray-500 text-xs mt-1">Fique por dentro das datas de levantamento dos mastros, missas e procissões.</p>
                 </div>
             </div>
-            <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-dark flex items-start space-x-4">
+            <a href="#locais" class="bg-white p-6 rounded-xl shadow-md border-t-4 border-dark flex items-start space-x-4 hover:-translate-y-1 hover:shadow-lg transition" aria-label="Ir para Locais das Celebrações">
                 <div class="text-dark text-2xl mt-1"><i class="fa-solid fa-map-location-dot"></i></div>
                 <div>
                     <h3 class="font-bold text-dark text-base">Rotas e Capelas</h3>
                     <p class="text-gray-500 text-xs mt-1">Veja os mapas dos cortejos, a localização da Capela do Rosário e os pontos de encontro.</p>
                 </div>
-            </div>
+            </a>
             <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-gold flex items-start space-x-4">
                 <div class="text-gold text-2xl mt-1"><i class="fa-solid fa-camera-retro"></i></div>
                 <div>
@@ -303,6 +304,81 @@
         </div>
     </section>
 
+    <!-- Locais das Celebrações -->
+    <section id="locais" class="bg-gray-50 py-16 border-b border-gray-200">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mb-10">
+                <span class="text-xs uppercase font-bold tracking-widest text-gold">Mapeamento comunitário</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-dark mt-2">Locais das Celebrações</h2>
+                <p class="text-gray-600 text-sm mt-3 leading-relaxed">
+                    Registre capelas, praças, casas e demais pontos de encontro relacionados às celebrações do Reinado. Os dados são salvos localmente no navegador.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <form id="form-local" class="lg:col-span-1 bg-white rounded-2xl p-6 shadow-sm border border-gray-200 space-y-4">
+                    <div>
+                        <label for="local-nome" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Nome do local</label>
+                        <input id="local-nome" name="nome" type="text" required placeholder="Ex.: Capela do Rosário" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
+                    </div>
+                    <div>
+                        <label for="local-tipo" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Tipo do local</label>
+                        <select id="local-tipo" name="tipo" required class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
+                            <option value="">Selecione o tipo</option>
+                            <option value="publico">Público</option>
+                            <option value="propriedade-particular">Propriedade particular</option>
+                            <option value="igreja-capela">Igreja/capela</option>
+                            <option value="praca">Praça</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="local-endereco" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Endereço</label>
+                        <input id="local-endereco" name="endereco" type="text" required placeholder="Rua, número e complemento" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="local-bairro" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Bairro</label>
+                            <input id="local-bairro" name="bairro" type="text" required placeholder="Bairro" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
+                        </div>
+                        <div>
+                            <label for="local-ano" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Ano da edição</label>
+                            <input id="local-ano" name="ano" type="number" min="1900" max="2100" required placeholder="2026" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="local-responsavel" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Responsável ou referência</label>
+                        <input id="local-responsavel" name="responsavel" type="text" required placeholder="Nome ou referência comunitária" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100">
+                    </div>
+                    <div>
+                        <label for="local-observacoes" class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Observações</label>
+                        <textarea id="local-observacoes" name="observacoes" rows="3" placeholder="Informações complementares" class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gold focus:outline-none focus:ring-2 focus:ring-amber-100"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-dark text-white rounded-lg px-4 py-3 text-xs font-bold uppercase tracking-wider hover:bg-gold transition">
+                        Cadastrar local
+                    </button>
+                </form>
+
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                        <div class="p-6 border-b border-gray-200 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                            <div>
+                                <h3 class="font-bold text-dark text-lg">Locais cadastrados</h3>
+                                <p class="text-xs text-gray-500 mt-1">Locais públicos recebem destaque verde; propriedades particulares recebem destaque âmbar.</p>
+                            </div>
+                            <span class="text-xs text-gray-500">Dados salvos em <strong>reinado_locais</strong></span>
+                        </div>
+                        <div id="lista-locais" class="grid grid-cols-1 md:grid-cols-2 gap-4 p-6"></div>
+                        <div id="lista-locais-vazia" class="hidden p-8 text-center text-sm text-gray-500">
+                            Ainda não há locais cadastrados. Use o formulário para registrar os pontos das celebrações.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <!-- Footer -->
     <footer id="contato" class="bg-dark text-gray-400 py-12 text-xs border-t-2 border-gold">
         <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -454,6 +530,138 @@
 
             renderizarEdicoes();
         }());
+
+        (function () {
+            const STORAGE_KEY = 'reinado_locais';
+            const formLocal = document.getElementById('form-local');
+            const listaLocais = document.getElementById('lista-locais');
+            const emptyState = document.getElementById('lista-locais-vazia');
+
+            const tiposLocal = {
+                publico: 'Público',
+                'propriedade-particular': 'Propriedade particular',
+                'igreja-capela': 'Igreja/capela',
+                praca: 'Praça',
+                outro: 'Outro'
+            };
+
+            function carregarLocais() {
+                try {
+                    const locais = JSON.parse(localStorage.getItem(STORAGE_KEY));
+                    return Array.isArray(locais) ? locais : [];
+                } catch (error) {
+                    return [];
+                }
+            }
+
+            function salvarLocais(locais) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(locais));
+            }
+
+            function escaparHtml(valor) {
+                return String(valor || '').replace(/[&<>"]|'/g, function (caractere) {
+                    return {
+                        '&': '&amp;',
+                        '<': '&lt;',
+                        '>': '&gt;',
+                        '"': '&quot;',
+                        "'": '&#039;'
+                    }[caractere];
+                });
+            }
+
+            function obterEstiloTipo(tipo) {
+                if (tipo === 'publico') {
+                    return {
+                        card: 'border-emerald-400 bg-emerald-50',
+                        badge: 'bg-emerald-100 text-emerald-700 border-emerald-200',
+                        icon: 'fa-landmark'
+                    };
+                }
+
+                if (tipo === 'propriedade-particular') {
+                    return {
+                        card: 'border-amber-400 bg-amber-50',
+                        badge: 'bg-amber-100 text-amber-700 border-amber-200',
+                        icon: 'fa-house-chimney'
+                    };
+                }
+
+                return {
+                    card: 'border-gray-200 bg-white',
+                    badge: 'bg-gray-100 text-gray-600 border-gray-200',
+                    icon: 'fa-location-dot'
+                };
+            }
+
+            function criarCardLocal(local) {
+                const estilo = obterEstiloTipo(local.tipo);
+                const article = document.createElement('article');
+                article.className = `rounded-xl border-l-4 ${estilo.card} p-5 shadow-sm`;
+                article.innerHTML = `
+                    <div class="flex items-start justify-between gap-3">
+                        <div>
+                            <h4 class="font-bold text-dark text-base">${escaparHtml(local.nome)}</h4>
+                            <p class="text-xs text-gray-500 mt-1">Edição ${escaparHtml(local.ano)} · ${escaparHtml(local.bairro)}</p>
+                        </div>
+                        <span class="inline-flex items-center rounded-full border px-3 py-1 text-[11px] font-bold uppercase tracking-wider ${estilo.badge}">
+                            <i class="fa-solid ${estilo.icon} mr-1"></i>${escaparHtml(tiposLocal[local.tipo] || local.tipo)}
+                        </span>
+                    </div>
+                    <dl class="mt-4 space-y-3 text-sm">
+                        <div>
+                            <dt class="text-xs font-bold uppercase tracking-wider text-gray-500">Endereço</dt>
+                            <dd class="text-gray-700">${escaparHtml(local.endereco)}</dd>
+                        </div>
+                        <div>
+                            <dt class="text-xs font-bold uppercase tracking-wider text-gray-500">Responsável ou referência</dt>
+                            <dd class="text-gray-700">${escaparHtml(local.responsavel)}</dd>
+                        </div>
+                        <div>
+                            <dt class="text-xs font-bold uppercase tracking-wider text-gray-500">Observações</dt>
+                            <dd class="text-gray-600">${escaparHtml(local.observacoes) || 'Sem observações.'}</dd>
+                        </div>
+                    </dl>
+                `;
+                return article;
+            }
+
+            function renderizarLocais() {
+                const locais = carregarLocais().sort((a, b) => Number(b.ano) - Number(a.ano) || String(a.nome).localeCompare(String(b.nome), 'pt-BR'));
+
+                listaLocais.innerHTML = '';
+                emptyState.classList.toggle('hidden', locais.length > 0);
+
+                locais.forEach((local) => {
+                    listaLocais.appendChild(criarCardLocal(local));
+                });
+            }
+
+            formLocal.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const formData = new FormData(formLocal);
+                const novoLocal = {
+                    id: Date.now().toString(),
+                    nome: formData.get('nome'),
+                    tipo: formData.get('tipo'),
+                    endereco: formData.get('endereco'),
+                    bairro: formData.get('bairro'),
+                    responsavel: formData.get('responsavel'),
+                    ano: formData.get('ano'),
+                    observacoes: formData.get('observacoes')
+                };
+
+                const locais = carregarLocais();
+                locais.push(novoLocal);
+                salvarLocais(locais);
+                formLocal.reset();
+                renderizarLocais();
+            });
+
+            renderizarLocais();
+        }());
+
     </script>
 
 </body>
