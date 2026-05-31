@@ -76,11 +76,12 @@
                     ['ano', 'Ano', 'number', '2026', 'min="1900" max="2100" required'],
                     ['tema', 'Tema', 'text', 'Tema da edição', 'required'],
                     ['descricao', 'Descrição', 'textarea', 'Resumo da programação anual', 'required rows="3"'],
+                    ['local', 'Local da celebração', 'text', 'Ex.: Praça, capela, rua ou propriedade particular', 'required'],
                     ['dataInicio', 'Data início', 'date', '', 'required'],
                     ['dataFim', 'Data fim', 'date', '', 'required'],
                     ['observacoes', 'Observações', 'textarea', 'Informações complementares', 'rows="2"']
                 ],
-                heads: ['Ano', 'Tema', 'Período', 'Descrição', 'Observações', 'Ação'],
+                heads: ['Ano', 'Tema', 'Período', 'Local', 'Descrição', 'Observações', 'Ação'],
                 action: { selected: 'Selecionada', select: 'Selecionar' }
             },
             people: {
@@ -229,9 +230,9 @@
                     ${sectionIntro(T.edition)}
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         <form id="form-edicao" class="lg:col-span-1 bg-gray-50 rounded-2xl p-6 shadow-sm border border-gray-200 space-y-4">
-                            ${T.edition.fields.slice(0, 3).map((item) => field('edicao', item)).join('')}
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">${T.edition.fields.slice(3, 5).map((item) => field('edicao', item)).join('')}</div>
-                            ${field('edicao', T.edition.fields[5])}
+                            ${T.edition.fields.slice(0, 4).map((item) => field('edicao', item)).join('')}
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">${T.edition.fields.slice(4, 6).map((item) => field('edicao', item)).join('')}</div>
+                            ${field('edicao', T.edition.fields[6])}
                             <button type="submit" class="w-full bg-dark text-white rounded-lg px-4 py-3 text-xs font-bold uppercase tracking-wider hover:bg-gold transition">Cadastrar edição</button>
                         </form>
                         <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
@@ -284,6 +285,7 @@
                     <td class="px-4 py-4 font-bold text-dark">${esc(item.ano)}</td>
                     <td class="px-4 py-4 text-gray-700">${esc(item.tema)}</td>
                     <td class="px-4 py-4 text-gray-600 whitespace-nowrap">${formatDate(item.dataInicio)} a ${formatDate(item.dataFim)}</td>
+                    <td class="px-4 py-4 text-gray-600 max-w-xs">${esc(item.local)}</td>
                     <td class="px-4 py-4 text-gray-500 max-w-xs">${esc(item.descricao)}</td>
                     <td class="px-4 py-4 text-gray-500 max-w-xs">${esc(item.observacoes)}</td>
                     <td class="px-4 py-4"><button type="button" data-ano="${esc(item.ano)}" class="selecionar-edicao rounded-md border border-gold px-3 py-2 text-xs font-bold uppercase tracking-wider text-gold hover:bg-gold hover:text-white transition">${item.selecionada ? T.edition.action.selected : T.edition.action.select}</button></td>
