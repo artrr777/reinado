@@ -82,7 +82,7 @@
                     ['observacoes', 'Observações', 'textarea', 'Informações complementares', 'rows="2"']
                 ],
                 heads: ['Ano', 'Tema', 'Período', 'Local', 'Descrição', 'Observações', 'Ação'],
-                action: { selected: 'Selecionada', select: 'Selecionar' }
+                action: { selected: 'Selecionada', select: 'Selecionar', remove: 'Excluir' }
             },
             people: {
                 badge: 'Cadastro local',
@@ -288,7 +288,12 @@
                     <td class="px-4 py-4 text-gray-600 max-w-xs">${esc(item.local)}</td>
                     <td class="px-4 py-4 text-gray-500 max-w-xs">${esc(item.descricao)}</td>
                     <td class="px-4 py-4 text-gray-500 max-w-xs">${esc(item.observacoes)}</td>
-                    <td class="px-4 py-4"><button type="button" data-ano="${esc(item.ano)}" class="selecionar-edicao rounded-md border border-gold px-3 py-2 text-xs font-bold uppercase tracking-wider text-gold hover:bg-gold hover:text-white transition">${item.selecionada ? T.edition.action.selected : T.edition.action.select}</button></td>
+                    <td class="px-4 py-4">
+                        <div class="flex flex-wrap gap-2">
+                            <button type="button" data-ano="${esc(item.ano)}" class="selecionar-edicao rounded-md border border-gold px-3 py-2 text-xs font-bold uppercase tracking-wider text-gold hover:bg-gold hover:text-white transition">${item.selecionada ? T.edition.action.selected : T.edition.action.select}</button>
+                            <button type="button" data-ano="${esc(item.ano)}" class="remover-edicao rounded-md border border-red-200 px-3 py-2 text-xs font-bold uppercase tracking-wider text-red-600 hover:bg-red-600 hover:text-white transition">${T.edition.action.remove}</button>
+                        </div>
+                    </td>
                 </tr>`).join('');
         }
 
@@ -319,9 +324,20 @@
         });
 
         $('#lista-edicoes').addEventListener('click', (event) => {
-            const button = event.target.closest('.selecionar-edicao');
-            if (!button) return;
-            edicoes.save(edicoes.all().map((item) => ({ ...item, selecionada: String(item.ano) === String(button.dataset.ano) })));
+            const selectButton = event.target.closest('.selecionar-edicao');
+            const removeButton = event.target.closest('.remover-edicao');
+
+            if (selectButton) {
+                edicoes.save(edicoes.all().map((item) => ({ ...item, selecionada: String(item.ano) === String(selectButton.dataset.ano) })));
+            }
+
+            if (removeButton) {
+                const remaining = edicoes.all().filter((item) => String(item.ano) !== String(removeButton.dataset.ano));
+                if (remaining.length && !remaining.some((item) => item.selecionada)) remaining[0].selecionada = true;
+                edicoes.save(remaining);
+            }
+
+            if (!selectButton && !removeButton) return;
             renderEdicoes();
         });
 
