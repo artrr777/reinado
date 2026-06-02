@@ -25,7 +25,7 @@
         body.alto-contraste img { filter: contrast(1.2) brightness(0.9); }
     </style>
 </head>
-<body class="bg-light text-gray-800 font-sans antialiased">
+<body class="bg-light text-gray-800 font-sans antialiased overflow-x-hidden">
     <div id="app"></div>
 
     <script>
@@ -59,10 +59,16 @@
                 caption: 'Igreja de Nossa Senhora do Rosário, Betim/MG'
             },
             guards: [
-                { key: 'congo', color: 'text-blue-600', title: 'Congo', textTitle: 'Terno de Congo', category: 'Guarda', desc: 'Danças e cantos tradicionais.', textDesc: 'Conhecidos pelas roupas vibrantes e coreografias dinâmicas, representam a alegria do anúncio.', img: 'https://www.otempobetim.com.br/content/dam/otempo/editorias/betim%20live/2024/8/betim%20live-festa-do-congado-em-betim-1723780119.jpeg', alt: 'Congo' },
-                { key: 'mocambique', color: 'text-amber-700', title: 'Moçambique', textTitle: 'Terno de Moçambique', category: 'Tradição', desc: 'Ritmos ancestrais e tradição.', textDesc: 'Ritmo cadenciado pelas gungas nos tornozelos, guardiões oficiais da coroa e dos altares.', bg: 'from-amber-900 to-amber-700' },
-                { key: 'catupe', color: 'text-emerald-600', title: 'Catupé', textTitle: 'Terno de Catupé', category: 'Ritmo', desc: 'Cultura e musicalidade vibrante.', textDesc: 'Trazem instrumentos de sopro ou batidas diferenciadas, enriquecendo a harmonia sonora.', bg: 'from-emerald-900 to-emerald-700' },
-                { key: 'marujada', color: 'text-red-600', title: 'Marujada', textTitle: 'Marujada / Marinheiros', category: 'História', desc: 'Fé, procissões e tradição.', textDesc: 'Cantam as jornadas marítimas e a vinda da imagem protetora pelas águas.', bg: 'from-blue-900 to-blue-700' }
+                { key: 'congo', color: 'text-blue-600', title: 'Congo', textTitle: 'Terno de Congo', category: 'Guarda', desc: 'Danças e cantos tradicionais.', textDesc: 'Conhecidos pelas roupas vibrantes e coreografias dinâmicas, representam a alegria do anúncio.', bg: 'from-blue-900 to-blue-700', img: 'assets/images/guarda-congo.jpg', alt: 'Guarda de Congado em cortejo com tambores e vestes festivas.' },
+                { key: 'mocambique', color: 'text-amber-700', title: 'Moçambique', textTitle: 'Terno de Moçambique', category: 'Tradição', desc: 'Ritmos ancestrais e tradição.', textDesc: 'Ritmo cadenciado pelas gungas nos tornozelos, guardiões oficiais da coroa e dos altares.', bg: 'from-amber-900 to-amber-700', img: 'assets/images/terno-mocambique.jpg', alt: 'Terno de Moçambique em apresentação de Congada.' },
+                { key: 'catupe', color: 'text-emerald-600', title: 'Catupé', textTitle: 'Terno de Catupé', category: 'Ritmo', desc: 'Cultura e musicalidade vibrante.', textDesc: 'Trazem instrumentos de sopro ou batidas diferenciadas, enriquecendo a harmonia sonora.', bg: 'from-emerald-900 to-emerald-700', img: 'assets/images/terno-catupe.jpg', alt: 'Catopês na Festa de Nossa Senhora do Rosário em Minas Gerais.' },
+                { key: 'marujada', color: 'text-red-600', title: 'Marujada', textTitle: 'Marujada / Marinheiros', category: 'História', desc: 'Fé, procissões e tradição.', textDesc: 'Cantam as jornadas marítimas e a vinda da imagem protetora pelas águas.', bg: 'from-blue-900 to-blue-700', img: 'assets/images/marujada-marinheiros.jpg', alt: 'Marujos em cortejo tradicional com trajes de marinheiros.' }
+            ],
+            imageCredits: [
+                ['Congo', 'Jonathan Jefferson', 'CC BY-SA 4.0', 'https://commons.wikimedia.org/wiki/File:Congado_Oliveira-MG_05.jpg'],
+                ['Moçambique', 'Alberto Lefèvre', 'CC BY-SA 4.0', 'https://commons.wikimedia.org/wiki/File:Congada_Cia_de_Mo%C3%A7ambique_do_Parque_S%C3%A3o_Cristov%C3%A3o,_Taubat%C3%A9.jpg'],
+                ['Catupé', 'Márcio L C', 'CC BY-SA 4.0', 'https://commons.wikimedia.org/wiki/File:Catop%C3%AAs.jpg'],
+                ['Marujada', 'HVL', 'CC BY 3.0', 'https://commons.wikimedia.org/wiki/File:Marujos_dos_Cocais_durante_passagem_da_tocha_ol%C3%ADmpica_em_Coronel_Fabriciano_MG.JPG']
             ],
             edition: {
                 badge: 'Área administrativa',
@@ -146,9 +152,10 @@
             ['facebook', 'https://www.facebook.com/prefeituradebetim/'],
             ['youtube', 'https://www.youtube.com/user/PrefeituradeBetim']
         ];
-        const guardCover = (guard) => guard.img
-            ? `<img src="${guard.img}" alt="${guard.alt}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.style.display='none'">`
-            : `<div class="absolute inset-0 bg-gradient-to-br ${guard.bg}"></div>`;
+        const guardCover = (guard) => `
+            <div class="absolute inset-0 bg-gradient-to-br ${guard.bg}"></div>
+            ${guard.img ? `<img src="${guard.img}" alt="${guard.alt}" class="relative z-10 w-full h-full object-cover group-hover:scale-110 transition duration-500" loading="lazy" onerror="this.style.display='none'">` : ''}
+        `;
         const sectionIntro = (data) => `
             <div class="max-w-3xl mb-10">
                 <span class="text-xs uppercase font-bold tracking-widest text-gold">${data.badge}</span>
@@ -167,20 +174,20 @@
                 </div>
             </div>
             <header class="bg-white shadow-sm sticky top-0 z-50">
-                <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-                    <div class="flex items-center space-x-3">
+                <div class="container mx-auto px-4 py-4 flex justify-between items-center gap-3">
+                    <div class="flex min-w-0 items-center space-x-3">
                         <div class="bg-dark text-white p-2 rounded-lg"><i class="fa-solid fa-crown text-xl text-amber-400"></i></div>
                         <div><h1 class="font-bold text-lg leading-tight tracking-tight text-dark">${T.brand.title}</h1><p class="text-xs text-gray-500 uppercase tracking-widest">${T.brand.local}</p></div>
                     </div>
                     <nav class="hidden md:flex space-x-8 font-medium text-sm text-gray-600">${T.nav.items.map(([href, label, id]) => `<a href="${href}" ${id ? `id="${id}"` : ''} class="hover:text-gold transition">${label}</a>`).join('')}</nav>
-                    <a href="#programacao" class="bg-dark text-white px-4 py-2 rounded-md text-xs font-semibold hover:bg-gold transition uppercase tracking-wider">${T.nav.cta}</a>
+                    <a href="#programacao" class="shrink-0 bg-dark text-white px-3 sm:px-4 py-2 rounded-md text-[10px] sm:text-xs font-semibold hover:bg-gold transition uppercase tracking-wider">${T.nav.cta}</a>
                 </div>
             </header>
             <section class="relative bg-dark text-white py-24 md:py-32 overflow-hidden">
                 <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
                 <div class="container mx-auto px-4 relative z-10 text-center max-w-3xl">
                     <span class="bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full font-semibold uppercase tracking-widest">${T.hero.badge}</span>
-                    <h2 class="text-4xl md:text-5xl font-extrabold mt-4 tracking-tight">${T.hero.title}</h2>
+                    <h2 class="mx-auto max-w-2xl text-3xl sm:text-4xl md:text-5xl font-extrabold mt-4 tracking-tight">${T.hero.title}</h2>
                     <p class="mt-4 text-gray-300 text-base md:text-lg font-light leading-relaxed">${T.hero.desc}</p>
                     <div class="mt-8 flex justify-center space-x-4">${T.hero.actions.map(([href, label, cls]) => `<a href="${href}" class="${cls} px-6 py-3 rounded-md font-semibold text-sm transition">${label}</a>`).join('')}</div>
                 </div>
@@ -223,6 +230,7 @@
                             <p class="text-gray-500 text-xs mt-2">${guard.textDesc}</p>
                         </div>`).join('')}
                     </div>
+                    <p class="mt-8 text-center text-[11px] leading-relaxed text-gray-400">Imagens: ${T.imageCredits.map(([label, author, license, url]) => `<a href="${url}" target="_blank" rel="noopener" class="underline decoration-gray-300 underline-offset-2 hover:text-gray-600">${label} - ${author} (${license})</a>`).join(' · ')}</p>
                 </div>
             </section>
             <section id="programacao" class="bg-white py-16 border-b border-gray-200">
